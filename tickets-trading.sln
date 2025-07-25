@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tickets-trading", "tickets-trading.csproj", "{158D2BF7-F706-48A4-AF67-A78AFC40384B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tickets-trading", "src/tickets-trading-app/tickets-trading.csproj", "{158D2BF7-F706-48A4-AF67-A78AFC40384B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
