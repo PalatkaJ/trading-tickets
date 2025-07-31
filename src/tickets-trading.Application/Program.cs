@@ -1,4 +1,4 @@
-﻿namespace tickets_trading;
+﻿namespace tickets_trading.Application;
 
 class Program
 {
