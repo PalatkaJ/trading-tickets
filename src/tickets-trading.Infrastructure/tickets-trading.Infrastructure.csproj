@@ -8,4 +8,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\tickets-trading.Application\tickets-trading.Application.csproj" />
+      <ProjectReference Include="..\tickets-trading.Domain\tickets-trading.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.7" />
+    </ItemGroup>
+
 </Project>

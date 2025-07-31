@@ -8,4 +8,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\tickets-trading.Domain\tickets-trading.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
