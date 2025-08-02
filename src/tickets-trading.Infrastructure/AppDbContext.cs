@@ -13,4 +13,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         optionsBuilder.UseSqlite("Data Source=users.db");
         return new AppDbContext(optionsBuilder.Options);
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>()
+            .HasDiscriminator<string>("Discriminator")
+            .HasValue<User>("User")
+            .HasValue<Admin>("Admin");
+    }
 }

@@ -1,4 +1,6 @@
-namespace tickets_trading.Domain;
+using tickets_trading.Domain;
+
+namespace tickets_trading.Application;
 
 public interface IUserRepository
 {
