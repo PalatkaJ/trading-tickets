@@ -8,17 +8,10 @@ namespace tickets_trading.UI;
 
 public static class ProgramSetup
 {
-    public static AuthService SetUpAuthenticationService(AppDbContext db)
+    public static AuthenticationModule SetUpAuthenticationService(AppDbContext db)
     {
         var userRepo = new UserRepository(db);
         var hasher = new Pbkdf2PasswordHasher();
-        return new AuthService(userRepo, hasher);
-    }
-
-    public static (IView, IMenuView, IMenuBuilder) SetUpViewsAndBuilders()
-    {
-        var simpleView = new SimpleConsoleView();
-        var menuView = new MenuView();
-        return (simpleView, menuView, new AuthenticationMenuBuilder(simpleView, menuView));
+        return new AuthenticationModule(userRepo, hasher);
     }
 }

@@ -11,27 +11,21 @@ public class SimpleConsoleView: IView
         return _reader.ReadLine()!;
     }
 
-    public void ShowMessage(string? message = null)
-    {
-        _writer.Write(message);
-    }
+    public void ShowMessage(string? message = null) => _writer.Write(message);
 
-    public void Display()
+    private void Clear() => Console.Clear();
+
+    public void DisplayContent()
     {
+        Clear();
         DisplayTitle();
         DisplayBody();
         DisplayFooter();
     }
 
-    private void DisplayTitle()
-    {
-        ShowMessage("\n===============\nTICKETS TRADING\n===============\n");
-    }
+    private void DisplayTitle() => ShowMessage("\n===============\nTICKETS TRADING\n===============\n");
 
     protected virtual void DisplayBody() { }
 
-    protected virtual void DisplayFooter()
-    {
-        ShowMessage("===============\n");
-    }
+    protected virtual void DisplayFooter() => ShowMessage("\n");
 }

@@ -5,7 +5,7 @@ namespace tickets_trading.UI.Services.HelpServices;
 
 public abstract class HelpService: SimpleConsoleView, IService
 {
-    public void Execute() => Display();
+    public void Execute() => DisplayContent();
 
     protected abstract string Msg { get; }
 

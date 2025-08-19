@@ -1,5 +1,6 @@
 ﻿using tickets_trading.Infrastructure;
 using tickets_trading.UI.Controller;
+using tickets_trading.UI.View.Menu;
 
 namespace tickets_trading.UI;
 
@@ -11,8 +12,7 @@ class Program
         db.Database.EnsureCreated();
         
         var authenticationService = ProgramSetup.SetUpAuthenticationService(db);
-        var (simpleView, menuView, menuBuilder) = ProgramSetup.SetUpViewsAndBuilders();
-        var consoleAppController = new ConsoleAppController(authenticationService, simpleView, menuView, menuBuilder);
+        var consoleAppController = new ConsoleAppController(authenticationService, new MenuView());
 
         consoleAppController.Run();
     }

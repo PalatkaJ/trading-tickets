@@ -2,7 +2,7 @@ using tickets_trading.Domain;
 
 namespace tickets_trading.Application;
 
-public class AuthService(IUserRepository userRepo, IPasswordHasher hasher)
+public class AuthenticationModule(IUserRepository userRepo, IPasswordHasher hasher)
 {
     private readonly IUserRepository _userRepo = userRepo;
     private readonly IPasswordHasher _hasher = hasher;
