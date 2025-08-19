@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-using tickets_trading.Application;
-using tickets_trading.Infrastructure;
+﻿using tickets_trading.Infrastructure;
+using tickets_trading.UI.Controller;
 
 namespace tickets_trading.UI;
 
@@ -11,8 +10,9 @@ class Program
         using var db = AppDbContext.Create();
         db.Database.EnsureCreated();
         
-        var authService = ProgramSetup.SetUpAuthenticationService(db);
-        var consoleAppController = new ConsoleAppController(authService);
+        var authenticationService = ProgramSetup.SetUpAuthenticationService(db);
+        var (simpleView, menuView, menuBuilder) = ProgramSetup.SetUpViewsAndBuilders();
+        var consoleAppController = new ConsoleAppController(authenticationService, simpleView, menuView, menuBuilder);
 
         consoleAppController.Run();
     }
