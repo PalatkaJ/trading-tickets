@@ -1,6 +1,6 @@
-using tickets_trading.UI.Core.Views.OptionsView;
+using tickets_trading.UI.Features.Menus.MenuView;
 
-namespace tickets_trading.UI.Features.Menus;
+namespace tickets_trading.UI.Features.Menus.MenuBuilders;
 
 public interface IMenuBuilder
 {

@@ -1,4 +1,6 @@
-namespace tickets_trading.UI.Core.Views.OptionsView;
+using tickets_trading.UI.Core.Views;
+
+namespace tickets_trading.UI.Features.Menus.MenuView;
 
 public class MenuView: ConsoleViewBase, IMenuView
 {

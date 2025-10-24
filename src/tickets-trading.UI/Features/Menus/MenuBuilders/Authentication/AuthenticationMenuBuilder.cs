@@ -1,9 +1,9 @@
 using tickets_trading.Application.Authentication;
 using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Features.Authentication;
-using tickets_trading.UI.Core.Views.OptionsView;
+using tickets_trading.UI.Features.Menus.MenuView;
 
-namespace tickets_trading.UI.Features.Menus.Authentication;
+namespace tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 public class AuthenticationMenuBuilder(AuthenticationModule authModule, Action<User> onUserFound) : MenuBuilderTemplate
 {

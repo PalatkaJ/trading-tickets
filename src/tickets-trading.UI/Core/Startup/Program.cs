@@ -1,5 +1,5 @@
 ﻿using tickets_trading.Infrastructure.Database;
-using tickets_trading.UI.Core.Views.OptionsView;
+using tickets_trading.UI.Features.Menus.MenuView;
 
 namespace tickets_trading.UI.Core.Startup;
 
