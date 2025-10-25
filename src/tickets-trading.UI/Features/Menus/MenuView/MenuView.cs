@@ -20,14 +20,20 @@ public class MenuView: ConsoleViewBase, IMenuView
     public MenuItem ChooseOption()
     {
         if (Options is null) throw new ArgumentNullException(nameof(Options));
+
+        bool invalidOption = false;
         
         while (true)
         {
+            DisplayContent();
+            
+            if (invalidOption) ShowMessage("Invalid option. Try again.\n");
+            
             var option = GetInput("Select: ");
             if (int.TryParse(option, out var idx) && idx >= 1 && idx <= Options.Count)
                 return Options[idx - 1];
 
-            ShowMessage("Invalid option. Try again.\n");
+            invalidOption = true;
         }
     }
 }
