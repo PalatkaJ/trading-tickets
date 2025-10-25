@@ -1,5 +1,5 @@
 using tickets_trading.Application.Common;
-using tickets_trading.UI.Core.Views;
+using tickets_trading.UI.Core.View;
 
 namespace tickets_trading.UI.Features.Help;
 

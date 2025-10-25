@@ -1,7 +1,7 @@
 using tickets_trading.Application.Authentication;
 using tickets_trading.Application.Common;
 using tickets_trading.Domain.Authentication;
-using tickets_trading.UI.Core.Views;
+using tickets_trading.UI.Core.View;
 
 namespace tickets_trading.UI.Features.Authentication;
 

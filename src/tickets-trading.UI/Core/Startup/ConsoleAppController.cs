@@ -21,7 +21,6 @@ public class ConsoleAppController
     private readonly AdminMenuBuilder _adminMenuBuilder = new();
     private readonly UserMenuBuilder _userMenuBuilder = new();
     private readonly AuthenticationMenuBuilder _authenticationMenuBuilder;
-    
 
     public ConsoleAppController(AuthenticationModule authenticationModule, IMenuView menuView)
     {
