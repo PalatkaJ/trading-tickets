@@ -12,8 +12,10 @@ public static class LazyMenuBuildersLibrary
     private static ApplicationState? _appState;
 
     public static Lazy<AuthenticationMenuBuilder>? AuthenticationMenuBuilder { get; private set; }
-    public static Lazy<AdminMainMenuBuilder>? AdminMenuBuilder { get; private set; }
-    public static Lazy<RegularUserMainMenuBuilder>? UserMenuBuilder { get; private set; }
+    public static Lazy<AdminMainMenuBuilder>? AdminMainMenuBuilder { get; private set; }
+    public static Lazy<AdminEventsMenuBuilder>? AdminTicketsShopMenuBuilder { get; private set; }
+    
+    public static Lazy<RegularUserMainMenuBuilder>? UserMainMenuBuilder { get; private set; }
 
     private static bool _initialized = false;
 
@@ -29,11 +31,15 @@ public static class LazyMenuBuildersLibrary
             () => new AuthenticationMenuBuilder(_authModule, _appState)
         );
 
-        AdminMenuBuilder = new Lazy<AdminMainMenuBuilder>(
+        AdminMainMenuBuilder = new Lazy<AdminMainMenuBuilder>(
             () => new AdminMainMenuBuilder(_appState)
         );
+        
+        AdminTicketsShopMenuBuilder = new Lazy<AdminEventsMenuBuilder>(
+            () => new AdminEventsMenuBuilder(_appState)
+        );
 
-        UserMenuBuilder = new Lazy<RegularUserMainMenuBuilder>(
+        UserMainMenuBuilder = new Lazy<RegularUserMainMenuBuilder>(
             () => new RegularUserMainMenuBuilder(_appState)
         );
 

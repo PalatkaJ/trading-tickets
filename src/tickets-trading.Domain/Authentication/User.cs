@@ -2,14 +2,13 @@ namespace tickets_trading.Domain.Authentication;
 
 public abstract class User
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
     public string Username { get; private set; }
     public string PasswordHash { get; private set; }
     public string PasswordSalt { get; private set; }
     
-    public void SetFields(Guid id, string username, string hash, string salt)
+    public void SetFields(string username, string hash, string salt)
     {
-        Id = id;
         Username = username;
         PasswordHash = hash;
         PasswordSalt = salt;

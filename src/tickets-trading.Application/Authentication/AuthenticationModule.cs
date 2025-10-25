@@ -15,7 +15,7 @@ public class AuthenticationModule(IUserRepository userRepo, IPasswordHasher hash
         
         var (hash, salt) = _hasher.Hash(password);
         user = new TUser();
-        user.SetFields(Guid.NewGuid(), username, hash, salt);
+        user.SetFields(username, hash, salt);
         _userRepo.AddUser(user);
         return user;
     }

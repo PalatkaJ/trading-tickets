@@ -20,8 +20,8 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
         {
             ApplicationState.CurrentUser = user;
             ApplicationState.MenuBuilder = user is Admin ? 
-                LazyMenuBuildersLibrary.AdminMenuBuilder?.Value
-                : LazyMenuBuildersLibrary.UserMenuBuilder?.Value;
+                LazyMenuBuildersLibrary.AdminMainMenuBuilder?.Value
+                : LazyMenuBuildersLibrary.UserMainMenuBuilder?.Value;
         };
 
         _signUpUiService = new(authModule, onUserFound);

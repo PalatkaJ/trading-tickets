@@ -5,7 +5,7 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUser;
 
 public class RegularUserMainMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
-    protected override void BuildMiddleUserSpecific(List<MenuItem> items)
+    protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         items.Add(CreateItem("My Tickets", () => { }));
         items.Add(CreateItem("Tickets Shop",() => { }));

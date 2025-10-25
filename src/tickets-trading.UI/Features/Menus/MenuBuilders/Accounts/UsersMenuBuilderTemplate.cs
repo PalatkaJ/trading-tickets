@@ -7,7 +7,7 @@ public abstract class UsersMenuBuilderTemplate(ApplicationState applicationState
 {
     protected override void BuildMiddleCore(List<MenuItem> items)
     {
-        BuildMiddleUserSpecific(items);
+        BuildMiddleSpecific(items);
         items.Add(CreateItem("Log Out", () =>
         {
             ApplicationState.CurrentUser = null;
@@ -15,5 +15,5 @@ public abstract class UsersMenuBuilderTemplate(ApplicationState applicationState
         }));
     }
 
-    protected abstract void BuildMiddleUserSpecific(List<MenuItem> items);
+    protected abstract void BuildMiddleSpecific(List<MenuItem> items);
 }
