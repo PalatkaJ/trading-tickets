@@ -6,10 +6,10 @@ public class AuthenticationHelpService: HelpService
         """
         Simple tickets trading application, you can sign/ log into as:
             1. admin
-                you can put tickets into market but NOT buy them or trade them with other users
-            2. normal user
-                you can buy tickets from admins and trade them with other normal users (NOT admins)
-        Sign Up - use if you have not already created an account (user/ admin)
-        Log In - use if you have already created an account (user/ admin)
+                you can put tickets into market but NOT buy them or trade them with regular users
+            2. regular user
+                you can buy tickets from admins and trade them with other regular users (NOT admins)
+        Sign Up - use if you have not already created an account (regular user/ admin)
+        Log In - use if you have already created an account (regular user/ admin)
         """;
 }

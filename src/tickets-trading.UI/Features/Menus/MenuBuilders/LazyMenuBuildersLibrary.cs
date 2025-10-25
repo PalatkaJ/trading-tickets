@@ -1,7 +1,7 @@
 using tickets_trading.Application.Authentication;
 using tickets_trading.UI.Core.Startup;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.Admin;
-using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.User;
+using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUser;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders;
@@ -12,8 +12,8 @@ public static class LazyMenuBuildersLibrary
     private static ApplicationState? _appState;
 
     public static Lazy<AuthenticationMenuBuilder>? AuthenticationMenuBuilder { get; private set; }
-    public static Lazy<AdminMenuBuilder>? AdminMenuBuilder { get; private set; }
-    public static Lazy<UserMenuBuilder>? UserMenuBuilder { get; private set; }
+    public static Lazy<AdminMainMenuBuilder>? AdminMenuBuilder { get; private set; }
+    public static Lazy<RegularUserMainMenuBuilder>? UserMenuBuilder { get; private set; }
 
     private static bool _initialized = false;
 
@@ -29,12 +29,12 @@ public static class LazyMenuBuildersLibrary
             () => new AuthenticationMenuBuilder(_authModule, _appState)
         );
 
-        AdminMenuBuilder = new Lazy<AdminMenuBuilder>(
-            () => new AdminMenuBuilder(_appState)
+        AdminMenuBuilder = new Lazy<AdminMainMenuBuilder>(
+            () => new AdminMainMenuBuilder(_appState)
         );
 
-        UserMenuBuilder = new Lazy<UserMenuBuilder>(
-            () => new UserMenuBuilder(_appState)
+        UserMenuBuilder = new Lazy<RegularUserMainMenuBuilder>(
+            () => new RegularUserMainMenuBuilder(_appState)
         );
 
         _initialized = true;

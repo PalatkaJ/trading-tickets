@@ -1,6 +1,6 @@
 namespace tickets_trading.Domain.Authentication;
 
-public class User
+public abstract class User
 {
     public Guid Id { get; private set; }
     public string Username { get; private set; }

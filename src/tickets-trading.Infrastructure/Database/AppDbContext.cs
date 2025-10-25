@@ -18,7 +18,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         modelBuilder.Entity<User>()
             .HasDiscriminator<string>("Discriminator")
-            .HasValue<User>("User")
+            .HasValue<RegularUser>("Regular User")
             .HasValue<Admin>("Admin");
     }
 }

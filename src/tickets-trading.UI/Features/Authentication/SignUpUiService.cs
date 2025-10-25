@@ -23,7 +23,7 @@ public class SignUpUiService(AuthenticationModule authenticationModule, Action<U
             }
             case "n":
             { 
-                onUserFound(authenticationModule.SignUp<User>(username, password));
+                onUserFound(authenticationModule.SignUp<RegularUser>(username, password));
                 break;
             }
         }
