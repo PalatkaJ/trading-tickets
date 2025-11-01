@@ -9,9 +9,10 @@ static class Program
     {
         using var db = AppDbContext.Create();
         db.Database.EnsureCreated();
-        
-        var authenticationService = ProgramSetup.SetUpAuthenticationService(db);
-        var consoleAppController = new ConsoleAppController(authenticationService, new MenuView());
+
+        var (userRepo, eventsRepo, ticketsRepo) = ProgramSetup.InitializeRepositories(db);
+        var authenticationService = ProgramSetup.SetUpAuthenticationService(userRepo);
+        var consoleAppController = new ConsoleAppController(authenticationService, new MenuView(), userRepo, eventsRepo, ticketsRepo);
 
         // I will have to take care of exceptions one day...
         consoleAppController.Run();

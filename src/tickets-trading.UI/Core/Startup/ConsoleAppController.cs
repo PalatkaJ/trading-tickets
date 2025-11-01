@@ -1,4 +1,5 @@
 using tickets_trading.Application.Authentication;
+using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.UI.Features.Menus.MenuBuilders;
 using tickets_trading.UI.Features.Menus.MenuView;
 
@@ -10,13 +11,18 @@ public class ConsoleAppController
 
     private readonly IMenuView? _menuView;
     
-    public ConsoleAppController(AuthenticationModule authenticationModule, IMenuView menuView)
+    public ConsoleAppController(AuthenticationModule authenticationModule, IMenuView menuView,
+        IUserRepository userRepo, IEventsRepository eventsRepo, ITicketsRepository ticketsRepo)
     {
         _applicationState = new();
         LazyMenuBuildersLibrary.Initialize(_applicationState, authenticationModule);
         
         _menuView = menuView;
         _applicationState.MenuBuilder = LazyMenuBuildersLibrary.AuthenticationMenuBuilder?.Value;
+        
+        _applicationState.UserRepository = userRepo;
+        _applicationState.EventsRepository = eventsRepo;
+        _applicationState.TicketsRepository = ticketsRepo;
     }
     
     public void Run()

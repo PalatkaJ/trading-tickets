@@ -8,7 +8,7 @@ namespace tickets_trading.UI.Features.UIServices.Events;
 
 public class EventCreationService(ApplicationState applicationState): UIService
 {
-    private readonly EventCreationHandler _eventCreationHandler = new();
+    private readonly EventCreationHandler _eventCreationHandler = new(applicationState.EventsRepository!);
     
     protected override string Subtitle => "EVENT CREATION";
 
@@ -20,7 +20,8 @@ public class EventCreationService(ApplicationState applicationState): UIService
         DateTime date = PromptForDateTime();
         string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
         int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
-        e.SetFields(title, description, date,place, (Admin)applicationState.CurrentUser!, nrOfTickets);
+        int price = int.Parse(GetInput("Price of one ticket: "));
+        e.SetFields(title, description, date,place, (Admin)applicationState.CurrentUser!, nrOfTickets, price);
         
         _eventCreationHandler.Handle(e);
     }
@@ -28,7 +29,7 @@ public class EventCreationService(ApplicationState applicationState): UIService
     private DateTime PromptForDateTime()
     {
         const string format = "yyyy-MM-dd HH:mm";
-        var input = GetInput($"Time and date of event in format {format} (e.g. 2025-07-23 14:30): ");
+        var input = GetInput($"Time and date of event in format {format} (e.g. 2025-07-23 14:30): ").Trim();
 
         return DateTime.ParseExact(input, format, CultureInfo.InvariantCulture, DateTimeStyles.None); 
     }

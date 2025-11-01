@@ -1,7 +1,6 @@
-using tickets_trading.Domain;
 using tickets_trading.Domain.Authentication;
 
-namespace tickets_trading.Application.Authentication;
+namespace tickets_trading.Application.DatabaseAPI;
 
 public interface IUserRepository
 {

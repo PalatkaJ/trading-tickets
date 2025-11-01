@@ -6,18 +6,25 @@ public class Ticket
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
     
-    public int TicketNumber { get; private set; }
+    public string? Seat { get; set; }
+
+    public int Price;
     
-    public Event Event { get; private set; }
+    public RegularUser? TicketOwner { get; set; }
+    public Guid? TicketOwnerId { get; set; }
+    
+    public Event? Event { get; set; }
+    public Guid? EventId { get; set; }
 
     public override string ToString()
     {
-        return Event + $": ticket number [{TicketNumber}]";
+        return Event + $": ticket number [{Seat}]";
     }
 
-    public void SetFields(int ticketNumber, Event e)
+    public void SetFields(string seat, int price, Event e)
     {
-        TicketNumber = ticketNumber;
+        Seat = seat;
+        Price = price;
         Event = e;
     }
 
