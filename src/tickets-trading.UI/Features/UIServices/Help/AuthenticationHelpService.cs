@@ -1,4 +1,4 @@
-namespace tickets_trading.UI.Features.Help;
+namespace tickets_trading.UI.Features.UIServices.Help;
 
 public class AuthenticationHelpService: HelpService
 {

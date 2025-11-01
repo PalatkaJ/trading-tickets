@@ -1,18 +1,17 @@
 using tickets_trading.Application.Authentication;
-using tickets_trading.Application.Common;
 using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.View;
 
-namespace tickets_trading.UI.Features.Authentication;
+namespace tickets_trading.UI.Features.UIServices.Authentication;
 
-public class SignUpUiService(AuthenticationModule authenticationModule, Action<User> onUserFound): ConsoleViewBase, IAuthenticationUi, IService
+public class SignUpUIService(AuthenticationModule authenticationModule, Action<User> onUserFound): UIService, IAuthenticationUI
 {
-    public void Execute() => DisplayContent();
-    
-    protected override void DisplayBody()
+    protected override string Subtitle => "SIGN UP";
+
+    protected override void DisplayCore()
     { 
         var option = GetInput("Sign Up as an admin? [y/n]: ");
-        var (username, password) = ((IAuthenticationUi)this).GetCredentials();
+        var (username, password) = ((IAuthenticationUI)this).GetCredentials();
 
         switch (option)
         {

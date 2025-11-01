@@ -1,8 +1,8 @@
 using tickets_trading.UI.Core.View;
 
-namespace tickets_trading.UI.Features.Authentication;
+namespace tickets_trading.UI.Features.UIServices.Authentication;
 
-public interface IAuthenticationUi: IView
+public interface IAuthenticationUI: IView
 {
     public (string, string) GetCredentials()
     {
