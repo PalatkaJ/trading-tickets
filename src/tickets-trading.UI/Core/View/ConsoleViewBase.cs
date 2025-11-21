@@ -5,6 +5,11 @@ public abstract class ConsoleViewBase: IView
     private readonly StreamReader _reader = new (Console.OpenStandardInput());
     private readonly StreamWriter _writer = new (Console.OpenStandardOutput()) {AutoFlush = true};
     
+    private readonly string _headline = new('=', HeadlineLength);
+    private readonly string _headTitle = "tickets trading"; 
+    
+    protected const int HeadlineLength = 45;
+    
     public string GetInput(string? prompt = null)
     {
         _writer.Write(prompt);
@@ -23,7 +28,13 @@ public abstract class ConsoleViewBase: IView
         DisplayFooter();
     }
 
-    private void DisplayTitle() => ShowMessage("\n===============\nTICKETS TRADING\n===============\n");
+    protected string GetTransformedTitle(string title)
+    {
+        string emptySpace = new(' ', (HeadlineLength - title.Length)/2);
+        return emptySpace + title.ToUpper() + emptySpace;
+    }
+    
+    private void DisplayTitle() => ShowMessage($"{_headline}\n{GetTransformedTitle(_headTitle)}\n{_headline}\n");
 
     protected virtual void DisplayBody() {}
 

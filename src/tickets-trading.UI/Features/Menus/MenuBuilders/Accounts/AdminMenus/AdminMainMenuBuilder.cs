@@ -1,7 +1,7 @@
 using tickets_trading.UI.Core.Startup;
 using tickets_trading.UI.Features.Menus.MenuView;
 
-namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.Admin;
+namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 
 public class AdminMainMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
@@ -9,8 +9,10 @@ public class AdminMainMenuBuilder(ApplicationState applicationState): UsersMenuB
     {
         items.Add(CreateItem("Events", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminTicketsShopMenuBuilder?.Value;
+            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsMenuBuilder?.Value;
         }));
+        
+        // TODO maybe add to UserTemplate bcs Reg User has that too
         items.Add(CreateItem("Account Information", () => { }));
     }
 }

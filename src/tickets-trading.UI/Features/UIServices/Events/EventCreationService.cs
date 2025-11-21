@@ -9,8 +9,9 @@ namespace tickets_trading.UI.Features.UIServices.Events;
 public class EventCreationService(ApplicationState applicationState): UIService
 {
     private readonly EventCreationHandler _eventCreationHandler = new(applicationState.EventsRepository!);
+    private readonly EventCreationConfirmationService _eventCreationConfirmationService = new();
     
-    protected override string Subtitle => "EVENT CREATION";
+    protected override string Subtitle => "event creation";
 
     protected override void DisplayCore()
     {
@@ -24,6 +25,7 @@ public class EventCreationService(ApplicationState applicationState): UIService
         e.SetFields(title, description, date,place, (Admin)applicationState.CurrentUser!, nrOfTickets, price);
         
         _eventCreationHandler.Handle(e);
+        _eventCreationConfirmationService.Execute();
     }
     
     private DateTime PromptForDateTime()

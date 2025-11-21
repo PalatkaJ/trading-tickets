@@ -7,6 +7,9 @@ namespace tickets_trading.Infrastructure.Database;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<Admin> Admins { get; set; }
+    public DbSet<RegularUser> RegularUsers { get; set; }
+    
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<Event> Events { get; set; }
     

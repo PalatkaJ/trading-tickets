@@ -3,7 +3,6 @@ using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
 using tickets_trading.UI.Features.Menus.MenuView;
 using tickets_trading.UI.Features.UIServices.Authentication;
-using tickets_trading.UI.Features.UIServices.Help;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
@@ -12,7 +11,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
     private readonly SignUpUIService? _signUpUiService;
     private readonly LogInUIService? _logInUiService;
 
-    private readonly AuthenticationHelpService? _authHelpService;
+    private readonly AuthenticationHelpService _authHelpService = new();
 
     public AuthenticationMenuBuilder(AuthenticationModule authModule, ApplicationState applicationState): base(applicationState)
     {
@@ -21,12 +20,11 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
             ApplicationState.CurrentUser = user;
             ApplicationState.MenuBuilder = user is Admin ? 
                 LazyMenuBuildersLibrary.AdminMainMenuBuilder?.Value
-                : LazyMenuBuildersLibrary.UserMainMenuBuilder?.Value;
+                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
         };
 
         _signUpUiService = new(authModule, onUserFound);
         _logInUiService = new(authModule, onUserFound);
-        _authHelpService = new();
     }
     
     protected override void BuildMiddleCore(List<MenuItem> items)

@@ -1,7 +1,8 @@
 using tickets_trading.Application.Authentication;
+using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
-using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.Admin;
-using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUser;
+using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
+using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders;
@@ -13,9 +14,12 @@ public static class LazyMenuBuildersLibrary
 
     public static Lazy<AuthenticationMenuBuilder>? AuthenticationMenuBuilder { get; private set; }
     public static Lazy<AdminMainMenuBuilder>? AdminMainMenuBuilder { get; private set; }
-    public static Lazy<AdminEventsMenuBuilder>? AdminTicketsShopMenuBuilder { get; private set; }
+    public static Lazy<AdminEventsMenuBuilder>? AdminEventsMenuBuilder { get; private set; }
+    public static Lazy<AdminEventsBrowserMenuBuilder>? AdminEventsBrowserMenuBuilder { get; private set; }
     
-    public static Lazy<RegularUserMainMenuBuilder>? UserMainMenuBuilder { get; private set; }
+    public static Lazy<RegularUserMainMenuBuilder>? RegularUserMainMenuBuilder { get; private set; }
+    public static Lazy<RegularUserBuyTicketsMenuBuilder>? RegularUserBuyTicketsMenuBuilder { get; private set; }
+    public static Lazy<RegularUserTicketsBrowserMenuBuilder>? RegularUserTicketsBrowserMenuBuilder { get; private set; }
 
     private static bool _initialized = false;
 
@@ -35,12 +39,24 @@ public static class LazyMenuBuildersLibrary
             () => new AdminMainMenuBuilder(_appState)
         );
         
-        AdminTicketsShopMenuBuilder = new Lazy<AdminEventsMenuBuilder>(
+        AdminEventsMenuBuilder = new Lazy<AdminEventsMenuBuilder>(
             () => new AdminEventsMenuBuilder(_appState)
         );
+        
+        AdminEventsBrowserMenuBuilder = new Lazy<AdminEventsBrowserMenuBuilder>(
+            () => new AdminEventsBrowserMenuBuilder(_appState)
+        );
 
-        UserMainMenuBuilder = new Lazy<RegularUserMainMenuBuilder>(
+        RegularUserMainMenuBuilder = new Lazy<RegularUserMainMenuBuilder>(
             () => new RegularUserMainMenuBuilder(_appState)
+        );
+        
+        RegularUserBuyTicketsMenuBuilder = new Lazy<RegularUserBuyTicketsMenuBuilder>(
+            () => new RegularUserBuyTicketsMenuBuilder(_appState)
+        );
+        
+        RegularUserTicketsBrowserMenuBuilder = new Lazy<RegularUserTicketsBrowserMenuBuilder>(
+            () => new RegularUserTicketsBrowserMenuBuilder(_appState)
         );
 
         _initialized = true;

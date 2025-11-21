@@ -4,6 +4,7 @@ namespace tickets_trading.UI.Features.UIServices;
 
 public abstract class UIService: ConsoleViewBase
 {
+    private readonly string _subtitleLine = new('─', HeadlineLength);
     protected abstract string Subtitle { get; }
     
     public void Execute()
@@ -11,10 +12,13 @@ public abstract class UIService: ConsoleViewBase
         DisplayContent();
     }
 
+    private void DisplaySubtitle() => ShowMessage($"{GetTransformedTitle(Subtitle)}\n{_subtitleLine}\n");
+    
     protected override void DisplayBody()
     {
-        ShowMessage(Subtitle + "\n");
+        DisplaySubtitle();
         DisplayCore();
+        ShowMessage("\n");
     }
 
     protected abstract void DisplayCore();

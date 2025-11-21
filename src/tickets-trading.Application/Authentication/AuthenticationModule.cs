@@ -11,7 +11,7 @@ public class AuthenticationModule(IUserRepository userRepo, IPasswordHasher hash
 
     public User SignUp<TUser>(string username, string password) where TUser: User, new() {
         // validate, hash, save
-        var user = _userRepo.GetUserByUsername(username);
+        var user = _userRepo.GetUserByUsernameLight(username);
         if (user is not null) throw new InvalidOperationException("User already exists.");
         
         var (hash, salt) = _hasher.Hash(password);
@@ -23,8 +23,9 @@ public class AuthenticationModule(IUserRepository userRepo, IPasswordHasher hash
 
     public User LogIn(string username, string password) {
         // check credentials
-        var user = _userRepo.GetUserByUsername(username) ?? throw new InvalidOperationException("User not found.");
+        var user = _userRepo.GetUserByUsernameLight(username) ?? throw new InvalidOperationException("User not found.");
         if (!_hasher.Verify(password, user.PasswordHash, user.PasswordSalt)) throw new UnauthorizedAccessException("Incorrect password.");
+        _userRepo.LoadUsersDependencies(user);
         return user;
     }
 }

@@ -20,7 +20,17 @@ public class Event
 
     public override string ToString()
     {
-        return Title;
+        return $"""
+                Title:        {Title ?? "N/A"}
+                Description:  {Description ?? "N/A"}
+                Date:         {(Date.HasValue ? Date.Value.ToString("dd MMM yyyy HH:mm") : "N/A")}
+                Place:        {Place ?? "N/A"}
+
+                Organizer:    {Organizer?.Username ?? "Unknown"}
+                Event ID:     {Id}
+
+                Tickets:      {Tickets?.Count ?? 0} available
+                """;
     }
     
     public void SetFields(string title, string description, DateTime date, string place, 
