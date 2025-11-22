@@ -2,6 +2,8 @@ using tickets_trading.Domain.Authentication;
 
 namespace tickets_trading.Domain;
 
+
+// TODO change Event so the ticket cost is there and not at the ticket
 public class Event
 {
     public Guid Id { get; private set; } = Guid.NewGuid();

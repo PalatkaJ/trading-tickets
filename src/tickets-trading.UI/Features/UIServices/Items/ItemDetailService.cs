@@ -1,7 +1,6 @@
-using tickets_trading.Domain;
 using tickets_trading.UI.Features.UIServices.UIServiceSpecializers;
 
-namespace tickets_trading.UI.Features.UIServices.Events;
+namespace tickets_trading.UI.Features.UIServices.Items;
 
 public class ItemDetailService<TItem>: MessageService
 {

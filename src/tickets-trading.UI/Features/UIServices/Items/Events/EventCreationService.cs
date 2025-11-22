@@ -4,7 +4,7 @@ using tickets_trading.Domain;
 using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
 
-namespace tickets_trading.UI.Features.UIServices.Events;
+namespace tickets_trading.UI.Features.UIServices.Items.Events;
 
 public class EventCreationService(ApplicationState applicationState): UIService
 {

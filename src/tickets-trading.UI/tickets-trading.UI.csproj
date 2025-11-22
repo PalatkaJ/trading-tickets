@@ -13,4 +13,8 @@
       <ProjectReference Include="..\tickets-trading.Infrastructure\tickets-trading.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\UIServices\Items\Tickets\" />
+    </ItemGroup>
+
 </Project>

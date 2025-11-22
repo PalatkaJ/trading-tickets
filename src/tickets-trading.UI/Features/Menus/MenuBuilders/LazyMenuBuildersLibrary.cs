@@ -20,6 +20,8 @@ public static class LazyMenuBuildersLibrary
     public static Lazy<RegularUserMainMenuBuilder>? RegularUserMainMenuBuilder { get; private set; }
     public static Lazy<RegularUserBuyTicketsMenuBuilder>? RegularUserBuyTicketsMenuBuilder { get; private set; }
     public static Lazy<RegularUserTicketsBrowserMenuBuilder>? RegularUserTicketsBrowserMenuBuilder { get; private set; }
+    public static Lazy<RegularUserBrowseEventsMenuBuilder>? RegularUserBrowseEventsMenuBuilder { get; private set; }
+    public static Lazy<RegularUserEventSubMenuBuilder>? RegularUserEventSubMenuBuilder { get; private set; }
 
     private static bool _initialized = false;
 
@@ -57,6 +59,14 @@ public static class LazyMenuBuildersLibrary
         
         RegularUserTicketsBrowserMenuBuilder = new Lazy<RegularUserTicketsBrowserMenuBuilder>(
             () => new RegularUserTicketsBrowserMenuBuilder(_appState)
+        );
+        
+        RegularUserBrowseEventsMenuBuilder = new Lazy<RegularUserBrowseEventsMenuBuilder>(
+            () => new RegularUserBrowseEventsMenuBuilder(_appState)
+        );
+        
+        RegularUserEventSubMenuBuilder = new Lazy<RegularUserEventSubMenuBuilder>(
+            () => new RegularUserEventSubMenuBuilder(_appState)
         );
 
         _initialized = true;
