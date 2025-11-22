@@ -4,6 +4,7 @@ using tickets_trading.UI.Core.Startup;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
+using tickets_trading.UI.Features.Menus.MenuView;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders;
 

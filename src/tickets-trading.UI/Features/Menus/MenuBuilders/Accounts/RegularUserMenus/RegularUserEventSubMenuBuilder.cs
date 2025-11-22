@@ -16,7 +16,8 @@ public class RegularUserEventSubMenuBuilder(ApplicationState applicationState): 
         items.Add(CreateItem($"Show Detail About {Event!.Title}", () => {
             _itemDetailService.Execute(Event!);
         }));
-        items.Add(CreateItem($"Purchase Ticket For {Event!.Title}", () => {}));
+        items.Add(CreateItem($"Purchase For {Event!.Price} {Event!.Currency}", () => {}));
+        
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder?.Value;

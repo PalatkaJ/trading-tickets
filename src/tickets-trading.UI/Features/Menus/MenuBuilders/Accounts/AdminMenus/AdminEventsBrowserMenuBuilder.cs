@@ -23,7 +23,7 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
                 _itemDetailService.Execute(e);
             }));
         }
-
+        
         items.Add(CreateItem("Help", _helpService.Execute));
         
         items.Add(CreateItem("Back", () =>

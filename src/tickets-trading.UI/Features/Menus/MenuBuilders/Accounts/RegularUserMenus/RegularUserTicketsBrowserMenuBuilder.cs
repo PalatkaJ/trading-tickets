@@ -23,7 +23,7 @@ public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationSt
                 _itemDetailService.Execute(t);
             }));
         }
-
+        
         items.Add(CreateItem("Help", _helpService.Execute));
         
         items.Add(CreateItem("Back", () =>

@@ -7,8 +7,6 @@ public class Ticket
     public Guid Id { get; private set; } = Guid.NewGuid();
     
     public string? Seat { get; set; }
-
-    public int Price;
     
     public RegularUser? TicketOwner { get; set; }
     public Guid? TicketOwnerId { get; set; }
@@ -21,10 +19,9 @@ public class Ticket
         return Event + $": ticket number [{Seat}]";
     }
 
-    public void SetFields(string seat, int price, Event e)
+    public void SetFields(string seat, Event e)
     {
         Seat = seat;
-        Price = price;
         Event = e;
     }
 

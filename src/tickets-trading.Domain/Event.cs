@@ -9,14 +9,18 @@ public class Event
     public Guid Id { get; private set; } = Guid.NewGuid();
     
     public string? Title { get; private set; }
-
+    
     public string? Description { get; private set; }
+    public int Price { get; private set; }
+    public string Currency => "Czk";
 
     public DateTime? Date { get; private set; }
     public string? Place { get; private set; }
 
     public Admin? Organizer { get; private set; }
     public Guid? OrganizerId { get; set; }
+
+    private int _ticketsLeft; 
     public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
     
 
@@ -29,9 +33,9 @@ public class Event
                 Place:        {Place ?? "N/A"}
 
                 Organizer:    {Organizer?.Username ?? "Unknown"}
-                Event ID:     {Id}
 
-                Tickets:      {Tickets?.Count ?? 0} available
+                Tickets:      {_ticketsLeft}/{Tickets?.Count ?? 0} available
+                Price:        {Price} {Currency}
                 """;
     }
     
@@ -44,15 +48,17 @@ public class Event
         Place = place;
         Organizer = organizer;
         OrganizerId = Organizer.Id;
-        GenerateTickets(numberOfTickets, price);
+        Price = price;
+        _ticketsLeft = numberOfTickets;
+        GenerateTickets(numberOfTickets);
     }
     
-    private void GenerateTickets(int count, int price)
+    private void GenerateTickets(int count)
     {
         for (int i = 0; i < count; i++)
         {
             Ticket ticket = new();
-            ticket.SetFields($"Seat-{i + 1}", price, this);
+            ticket.SetFields($"Seat-{i + 1}", this);
             Tickets.Add(ticket);
         }
     }

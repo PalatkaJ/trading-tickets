@@ -16,6 +16,7 @@ public class AdminEventsMenuBuilder(ApplicationState applicationState): UsersMen
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsBrowserMenuBuilder?.Value;
         }));
+        
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminMainMenuBuilder?.Value;

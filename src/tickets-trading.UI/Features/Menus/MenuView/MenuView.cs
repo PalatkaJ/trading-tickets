@@ -4,7 +4,6 @@ namespace tickets_trading.UI.Features.Menus.MenuView;
 
 public class MenuView: ConsoleViewBase, IMenuView
 {
-
     public IReadOnlyList<MenuItem>? Options { private get; set; }
     
     protected override void DisplayBody()

@@ -8,6 +8,7 @@ public abstract class UsersMenuBuilderTemplate(ApplicationState applicationState
     protected override void BuildMiddleCore(List<MenuItem> items)
     {
         BuildMiddleSpecific(items);
+        
         items.Add(CreateItem("Log Out", () =>
         {
             ApplicationState.CurrentUser = null;

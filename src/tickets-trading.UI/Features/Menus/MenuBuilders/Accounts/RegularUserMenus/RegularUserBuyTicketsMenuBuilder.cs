@@ -15,6 +15,7 @@ public class RegularUserBuyTicketsMenuBuilder(ApplicationState applicationState)
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder?.Value;
         }));
+        
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;

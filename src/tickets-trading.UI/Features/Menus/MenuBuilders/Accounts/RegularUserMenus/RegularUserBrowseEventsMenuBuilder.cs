@@ -26,7 +26,7 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
                 ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
             }));
         }
-
+        
         items.Add(CreateItem("Help", _helpService.Execute));
         
         items.Add(CreateItem("Back", () =>
