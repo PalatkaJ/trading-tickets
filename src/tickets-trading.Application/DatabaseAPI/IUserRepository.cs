@@ -9,4 +9,5 @@ public interface IUserRepository
     public User? GetUserByUsernameLight(string username);
 
     public void LoadUsersDependencies(User id);
+    
 }

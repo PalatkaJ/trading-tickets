@@ -2,7 +2,6 @@ using tickets_trading.Application.Authentication;
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Infrastructure.Authentication;
 using tickets_trading.Infrastructure.Database;
-using tickets_trading.Infrastructure.Repositories;
 
 namespace tickets_trading.UI.Core.Startup;
 

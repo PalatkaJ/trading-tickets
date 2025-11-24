@@ -9,13 +9,18 @@ public class MenuView: ConsoleViewBase, IMenuView
     protected override void DisplayBody()
     {
         if (Options is null) throw new ArgumentNullException(nameof(Options));
-        
-        for (int i = 0; i < Options.Count; ++i)
+
+        foreach (var menuItem in Options)
         {
-            ShowMessage($"{i+1}. {Options[i].Title}\n");
+            ShowMessage(menuItem + "\n");
         }
     }
 
+    private bool IndexIsValid(int idx)
+    {
+        return idx >= 1 && idx <= Options!.Count;
+    }
+    
     public MenuItem ChooseOption()
     {
         if (Options is null) throw new ArgumentNullException(nameof(Options));
@@ -28,9 +33,13 @@ public class MenuView: ConsoleViewBase, IMenuView
             
             if (invalidOption) ShowMessage("Invalid option. Try again.\n");
             
-            var option = GetInput("Select: ");
-            if (int.TryParse(option, out var idx) && idx >= 1 && idx <= Options.Count)
-                return Options[idx - 1];
+            var optionId = GetInput("Select: ");
+            if (int.TryParse(optionId, out var idx) && IndexIsValid(idx))
+            {
+                // we cant use just Options[idx] because we have other items in the list
+                // other than choosable by user (such as empty lines)
+                return Options.First(o => o.Id == idx);
+            }
 
             invalidOption = true;
         }

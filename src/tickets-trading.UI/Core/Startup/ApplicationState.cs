@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Features.Menus.MenuBuilders;
@@ -11,6 +12,8 @@ public class ApplicationState
     public User? CurrentUser;
     public IMenuBuilder? MenuBuilder;
 
+    public DbContext? DbContext;
+    
     public IUserRepository? UserRepository;
     public ITicketsRepository? TicketsRepository;
     public IEventsRepository? EventsRepository;

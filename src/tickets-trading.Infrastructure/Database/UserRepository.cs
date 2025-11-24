@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain.Authentication;
-using tickets_trading.Infrastructure.Database;
 
-namespace tickets_trading.Infrastructure.Repositories;
+namespace tickets_trading.Infrastructure.Database;
 
 public class UserRepository(AppDbContext context): IUserRepository
 {

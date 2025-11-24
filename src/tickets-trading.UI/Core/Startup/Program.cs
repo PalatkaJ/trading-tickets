@@ -12,7 +12,7 @@ static class Program
 
         var (userRepo, eventsRepo, ticketsRepo) = ProgramSetup.InitializeRepositories(db);
         var authenticationService = ProgramSetup.SetUpAuthenticationService(userRepo);
-        var consoleAppController = new ConsoleAppController(authenticationService, new MenuView(), userRepo, eventsRepo, ticketsRepo);
+        var consoleAppController = new ConsoleAppController(authenticationService, new MenuView(), userRepo, eventsRepo, ticketsRepo, db);
 
         // I will have to take care of exceptions one day...
         consoleAppController.Run();

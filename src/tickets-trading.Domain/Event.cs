@@ -18,39 +18,42 @@ public class Event
     public string? Place { get; private set; }
 
     public Admin? Organizer { get; private set; }
-    public Guid? OrganizerId { get; set; }
+    public Guid? OrganizerId { get; private set; }
 
-    private int _ticketsLeft; 
+    public int CurrentFreeTicket { get; private set; } 
     public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
     
 
     public override string ToString()
     {
         return $"""
-                Title:        {Title ?? "N/A"}
-                Description:  {Description ?? "N/A"}
-                Date:         {(Date.HasValue ? Date.Value.ToString("dd MMM yyyy HH:mm") : "N/A")}
-                Place:        {Place ?? "N/A"}
+                Title:        {Title}
+                Description:  {Description}
+                Date:         {Date!.Value:dd MMM yyyy HH:mm}
+                Place:        {Place}
 
-                Organizer:    {Organizer?.Username ?? "Unknown"}
+                Organizer:    {Organizer!.Username}
 
-                Tickets:      {_ticketsLeft}/{Tickets?.Count ?? 0} available
+                Tickets:      {Tickets.Count - CurrentFreeTicket}/{Tickets.Count} available
                 Price:        {Price} {Currency}
                 """;
     }
     
-    public void SetFields(string title, string description, DateTime date, string place, 
-        Admin organizer, int numberOfTickets, int price)
+    public void SetFields(string title, string description, DateTime date, string place, int numberOfTickets, int price)
     {
         Title = title;
         Description = description;
         Date = date;
         Place = place;
-        Organizer = organizer;
-        OrganizerId = Organizer.Id;
         Price = price;
-        _ticketsLeft = numberOfTickets;
+        CurrentFreeTicket = 0;
         GenerateTickets(numberOfTickets);
+    }
+
+    public void SetOrganizer(Admin admin)
+    {
+        Organizer = admin;
+        OrganizerId = admin.Id;
     }
     
     private void GenerateTickets(int count)
@@ -61,6 +64,13 @@ public class Event
             ticket.SetFields($"Seat-{i + 1}", this);
             Tickets.Add(ticket);
         }
+    }
+
+    public bool TicketIsAvailable() => CurrentFreeTicket < Tickets.Count;
+
+    public Ticket GetATicket()
+    {
+        return Tickets.ElementAt(CurrentFreeTicket++);
     }
     
     // for EF core

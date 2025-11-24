@@ -16,22 +16,32 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         var allEvents = ApplicationState.EventsRepository!.GetAllEventsWithDependencies();
-        
+
+        bool eventsAvailable = false;
         foreach (var e in allEvents)
         {
+            if (!e.TicketIsAvailable()) continue;
+            
             items.Add(CreateItem($"{e.Title}", () =>
             {
                 var menuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
                 menuBuilder!.Event = e;
                 ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
             }));
+
+            eventsAvailable = true;
+        }
+
+        if (!eventsAvailable)
+        {
+            items.Add(CreateNonSelectableItem("There are no available events, please come back later"));
         }
         
-        items.Add(CreateItem("Help", _helpService.Execute));
-        
+        items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder?.Value;
         } ));
+        items.Add(CreateItem("Help", _helpService.Execute));
     }
 }

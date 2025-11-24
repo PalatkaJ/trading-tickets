@@ -31,6 +31,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
     {
         items.Add(CreateItem("Sign Up", _signUpUiService!.Execute));
         items.Add(CreateItem("Log In", _logInUiService!.Execute));
+        items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("Help", _authHelpService!.Execute));
     }
 }

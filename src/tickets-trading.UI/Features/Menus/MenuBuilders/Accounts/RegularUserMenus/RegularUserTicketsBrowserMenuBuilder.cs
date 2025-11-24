@@ -23,12 +23,17 @@ public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationSt
                 _itemDetailService.Execute(t);
             }));
         }
+
+        if (!user.OwnedTickets.Any())
+        {
+            items.Add(CreateNonSelectableItem("You have not bought any tickets yet"));
+        }
         
-        items.Add(CreateItem("Help", _helpService.Execute));
-        
+        items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
         } ));
+        items.Add(CreateItem("Help", _helpService.Execute));
     }
 }

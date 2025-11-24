@@ -1,13 +1,15 @@
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain;
+using tickets_trading.Domain.Authentication;
 
 namespace tickets_trading.Application.ServiceHandlers;
 
-public class EventCreationHandler(IEventsRepository eventsRepo)
+public class EventCreationHandler(IEventsRepository eventsRepo, Admin admin)
 {
     public void Handle(Event e)
     {
-        e.Organizer.OrganizedEvents.Add(e);
+        e.SetOrganizer(admin);
+        admin.OrganizedEvents.Add(e);
         eventsRepo.AddEvent(e);
     }
 }

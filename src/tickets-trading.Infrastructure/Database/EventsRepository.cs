@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain;
-using tickets_trading.Infrastructure.Database;
 
-namespace tickets_trading.Infrastructure.Repositories;
+namespace tickets_trading.Infrastructure.Database;
 
 public class EventsRepository(AppDbContext context): IEventsRepository
 {
@@ -22,4 +21,5 @@ public class EventsRepository(AppDbContext context): IEventsRepository
     }
     
     public Event? GetEventById(Guid id) => context.Events.Find(id);
+    
 }

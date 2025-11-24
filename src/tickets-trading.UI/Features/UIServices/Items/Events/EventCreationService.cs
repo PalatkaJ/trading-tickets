@@ -8,7 +8,7 @@ namespace tickets_trading.UI.Features.UIServices.Items.Events;
 
 public class EventCreationService(ApplicationState applicationState): UIService
 {
-    private readonly EventCreationHandler _eventCreationHandler = new(applicationState.EventsRepository!);
+    private readonly EventCreationHandler _eventCreationHandler = new(applicationState.EventsRepository!, (Admin)applicationState.CurrentUser!);
     private readonly EventCreationConfirmationService _eventCreationConfirmationService = new();
     
     protected override string Subtitle => "event creation";
@@ -22,7 +22,7 @@ public class EventCreationService(ApplicationState applicationState): UIService
         string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
         int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
         int price = int.Parse(GetInput("Price of one ticket: "));
-        e.SetFields(title, description, date,place, (Admin)applicationState.CurrentUser!, nrOfTickets, price);
+        e.SetFields(title, description, date,place, nrOfTickets, price);
         
         _eventCreationHandler.Handle(e);
         _eventCreationConfirmationService.Execute();

@@ -1,8 +1,7 @@
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain;
-using tickets_trading.Infrastructure.Database;
 
-namespace tickets_trading.Infrastructure.Repositories;
+namespace tickets_trading.Infrastructure.Database;
 
 public class TicketsRepository(AppDbContext context): ITicketsRepository
 {

@@ -23,12 +23,17 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
                 _itemDetailService.Execute(e);
             }));
         }
+
+        if (!admin.OrganizedEvents.Any())
+        {
+            items.Add(CreateNonSelectableItem("You have not created any events yet"));
+        }
         
-        items.Add(CreateItem("Help", _helpService.Execute));
-        
+        items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsMenuBuilder?.Value;
         } ));
+        items.Add(CreateItem("Help", _helpService.Execute));
     }
 }

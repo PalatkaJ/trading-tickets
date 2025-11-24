@@ -24,5 +24,6 @@ public class RegularUserMainMenuBuilder(ApplicationState applicationState): User
         
         // TODO maybe add to UserTemplate bcs Admin has this too
         items.Add(CreateItem("Account Information", () => { }));
+        items.Add(CreateNonSelectableItem());
     }
 }

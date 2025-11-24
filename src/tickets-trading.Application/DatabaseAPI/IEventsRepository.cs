@@ -9,4 +9,5 @@ public interface IEventsRepository
     public IQueryable<Event> GetAllEventsWithDependencies();
     
     public Event? GetEventById(Guid id);
+    
 }

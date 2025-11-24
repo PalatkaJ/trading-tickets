@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain;
 using tickets_trading.Domain.Authentication;
 
@@ -44,5 +45,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             .WithOne(t => t.Event)
             .HasForeignKey(t => t.EventId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
+
+    public void Commit()
+    {
+        SaveChanges();
     }
 }

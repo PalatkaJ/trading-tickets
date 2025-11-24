@@ -16,15 +16,22 @@ public class Ticket
 
     public override string ToString()
     {
-        return Event + $": ticket number [{Seat}]";
+        return Event + $"\nSeat:         [{Seat}]";
     }
-
+    
     public void SetFields(string seat, Event e)
     {
         Seat = seat;
         Event = e;
+        EventId = e.Id;
     }
 
+    public void SetOwner(RegularUser owner)
+    {
+        TicketOwner = owner;
+        TicketOwnerId = owner.Id;
+    }
+    
     //for EF core
     public Ticket() { }
 }
