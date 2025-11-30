@@ -5,9 +5,9 @@ namespace tickets_trading.Domain;
 public class Event
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
-    
+
     public string? Title { get; private set; }
-    
+
     public string? Description { get; private set; }
     public int Price { get; private set; }
     public string Currency => "Czk";
@@ -18,21 +18,21 @@ public class Event
     public Admin? Organizer { get; private set; }
     public Guid? OrganizerId { get; private set; }
 
-    public int CurrentFreeTicket { get; private set; } 
-    public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
-    
+    public int CurrentFreeTicket { get; private set; }
+    public int TicketsCount { get; private set; }
+
+public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
 
     public override string ToString()
     {
         return $"""
                 Title:        {Title}
+                
                 Description:  {Description}
                 Date:         {Date!.Value:dd MMM yyyy HH:mm}
                 Place:        {Place}
 
-                Organizer:    {Organizer!.Username}
-
-                Tickets:      {Tickets.Count - CurrentFreeTicket}/{Tickets.Count} available
+                Tickets:      {TicketsCount - CurrentFreeTicket}/{TicketsCount} available
                 Price:        {Price} {Currency}
                 """;
     }
@@ -45,7 +45,8 @@ public class Event
         Place = place;
         Price = price;
         CurrentFreeTicket = 0;
-        GenerateTickets(numberOfTickets);
+        TicketsCount = numberOfTickets;
+        GenerateTickets();
     }
 
     public void SetOrganizer(Admin admin)
@@ -54,9 +55,9 @@ public class Event
         OrganizerId = admin.Id;
     }
     
-    private void GenerateTickets(int count)
+    private void GenerateTickets()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < TicketsCount; i++)
         {
             Ticket ticket = new();
             ticket.SetFields($"Seat-{i + 1}", this);
