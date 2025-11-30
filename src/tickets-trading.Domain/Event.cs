@@ -1,5 +1,3 @@
-using tickets_trading.Domain.Authentication;
-
 namespace tickets_trading.Domain;
 
 

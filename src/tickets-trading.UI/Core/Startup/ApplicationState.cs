@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_trading.Application.DatabaseAPI;
-using tickets_trading.Domain.Authentication;
+using tickets_trading.Domain;
 using tickets_trading.UI.Features.Menus.MenuBuilders;
 
 namespace tickets_trading.UI.Core.Startup;

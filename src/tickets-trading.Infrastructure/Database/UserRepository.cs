@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_trading.Application.DatabaseAPI;
-using tickets_trading.Domain.Authentication;
+using tickets_trading.Domain;
 
 namespace tickets_trading.Infrastructure.Database;
 

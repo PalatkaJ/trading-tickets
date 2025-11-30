@@ -1,7 +1,6 @@
 using System.Globalization;
 using tickets_trading.Application.ServiceHandlers;
 using tickets_trading.Domain;
-using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
 
 namespace tickets_trading.UI.Features.UIServices.Items.Events;

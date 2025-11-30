@@ -1,8 +1,9 @@
 using System.Globalization;
 using tickets_trading.Application.ServiceHandlers;
 using tickets_trading.Domain;
-using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
+using tickets_trading.UI.Features.UIServices.Items.Events;
+using tickets_trading.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_trading.UI.Features.UIServices.Items.Tickets;
 
@@ -31,17 +32,18 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
         
         var purchaseSuccessful = _ticketsPurchaseHandler.Handle(_e!);
 
+        MessageService msgService = new TicketsPurchaseConfirmationService();
+        
         switch (purchaseSuccessful)
         {
             case PurchaseResult.NotEnoughMoney:
-                _ticketsPurchaseFailNoMoneyService.Execute();
+                msgService = new TicketsPurchaseFailedNoMoneyService();
                 break;
             case PurchaseResult.NoTicketsAvailable:
-                _ticketsPurchaseFailNoTicketsService.Execute();
-                break;
-            case PurchaseResult.Success:
-                _ticketsPurchaseConfirmationService.Execute();
+                msgService = new TicketsPurchaseFailNoTicketsService();
                 break;
         }
+        
+        msgService.Execute();
     }
 }

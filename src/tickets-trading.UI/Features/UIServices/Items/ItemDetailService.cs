@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.ComTypes;
 using tickets_trading.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_trading.UI.Features.UIServices.Items;
@@ -12,7 +13,7 @@ public class ItemDetailService<TItem>: MessageService
         Execute();
     }
     
-    protected override string Subtitle => $"{_item!.GetType().Name.ToLower()} detail";
+    protected override string Subtitle => $"{typeof(TItem).Name.ToLower()} detail";
 
     protected override string Msg => _item!.ToString()!;
 }

@@ -1,6 +1,5 @@
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.Domain;
-using tickets_trading.Domain.Authentication;
 using Microsoft.EntityFrameworkCore;
 
 namespace tickets_trading.Application.ServiceHandlers;

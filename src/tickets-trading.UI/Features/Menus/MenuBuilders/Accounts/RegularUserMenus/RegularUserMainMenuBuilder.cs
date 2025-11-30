@@ -22,8 +22,10 @@ public class RegularUserMainMenuBuilder(ApplicationState applicationState): User
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserTicketsBrowserMenuBuilder?.Value;
         }));
         
-        // TODO maybe add to UserTemplate bcs Admin has this too
-        items.Add(CreateItem("Account Information", () => { }));
+        items.Add(CreateItem("Account Information", () =>
+        {
+            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserAccountInformationMenuBuilder?.Value;
+        }));
         items.Add(CreateNonSelectableItem());
     }
 }

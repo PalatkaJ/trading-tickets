@@ -1,4 +1,4 @@
-using tickets_trading.Domain.Authentication;
+using tickets_trading.Domain;
 
 namespace tickets_trading.Application.DatabaseAPI;
 

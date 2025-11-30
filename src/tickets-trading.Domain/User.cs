@@ -1,4 +1,4 @@
-namespace tickets_trading.Domain.Authentication;
+namespace tickets_trading.Domain;
 
 public abstract class User
 {
@@ -13,10 +13,15 @@ public abstract class User
         PasswordHash = hash;
         PasswordSalt = salt;
     }
+
+    protected abstract string GetRole { get; }
     
     public override string ToString()
     {
-        return Username + $" ({GetType().Name}, id: " + Id + ")";
+        return $"""
+                Username:     {Username}
+                Role:         {GetRole}
+                """;
     }
     
     // Required for EF Core to materialize the object

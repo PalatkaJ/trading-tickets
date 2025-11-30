@@ -1,5 +1,4 @@
 using tickets_trading.Application.Authentication;
-using tickets_trading.Domain.Authentication;
 using tickets_trading.UI.Core.Startup;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 using tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
@@ -23,6 +22,7 @@ public static class LazyMenuBuildersLibrary
     public static Lazy<RegularUserTicketsBrowserMenuBuilder>? RegularUserTicketsBrowserMenuBuilder { get; private set; }
     public static Lazy<RegularUserBrowseEventsMenuBuilder>? RegularUserBrowseEventsMenuBuilder { get; private set; }
     public static Lazy<RegularUserEventSubMenuBuilder>? RegularUserEventSubMenuBuilder { get; private set; }
+    public static Lazy<RegularUserAccountInformationMenuBuilder>? RegularUserAccountInformationMenuBuilder { get; private set; }
 
     private static bool _initialized = false;
 
@@ -68,6 +68,10 @@ public static class LazyMenuBuildersLibrary
         
         RegularUserEventSubMenuBuilder = new Lazy<RegularUserEventSubMenuBuilder>(
             () => new RegularUserEventSubMenuBuilder(_appState)
+        );
+        
+        RegularUserAccountInformationMenuBuilder = new Lazy<RegularUserAccountInformationMenuBuilder>(
+            () => new RegularUserAccountInformationMenuBuilder(_appState)
         );
 
         _initialized = true;
