@@ -10,9 +10,6 @@ namespace tickets_trading.UI.Features.UIServices.Items.Tickets;
 public class TicketsPurchaseService(ApplicationState applicationState): UIService
 {
     private readonly TicketsPurchaseHandler _ticketsPurchaseHandler = new(applicationState.DbContext!);
-    private readonly TicketsPurchaseConfirmationService _ticketsPurchaseConfirmationService = new();
-    private readonly TicketsPurchaseFailNoTicketsService _ticketsPurchaseFailNoTicketsService = new();
-    private readonly TicketsPurchaseFailedNoMoneyService _ticketsPurchaseFailNoMoneyService = new();
 
     private Event? _e;
     protected override string Subtitle => "tickets purchase";
@@ -27,7 +24,7 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
     {
         _ticketsPurchaseHandler.User = (RegularUser)applicationState.CurrentUser!;
         
-        var confirmation = GetInput("Are you sure you want to purchase this ticket? [y/n]: ");
+        var confirmation = GetInput("Do you really want to purchase this ticket? [y/n]: ");
         if (confirmation == "n") return;
         
         var purchaseSuccessful = _ticketsPurchaseHandler.Handle(_e!);
@@ -37,10 +34,10 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
         switch (purchaseSuccessful)
         {
             case PurchaseResult.NotEnoughMoney:
-                msgService = new TicketsPurchaseFailedNoMoneyService();
+                msgService = new TicketsPurchaseFailedService("You don't have enough money in your account.\nPlease recharge money in account information tab.");
                 break;
             case PurchaseResult.NoTicketsAvailable:
-                msgService = new TicketsPurchaseFailNoTicketsService();
+                msgService = new TicketsPurchaseFailedService("There are no tickets left for this event.");
                 break;
         }
         

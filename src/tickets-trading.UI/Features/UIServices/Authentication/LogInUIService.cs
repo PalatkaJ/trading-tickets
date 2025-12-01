@@ -4,13 +4,12 @@ using tickets_trading.UI.Core.View;
 
 namespace tickets_trading.UI.Features.UIServices.Authentication;
 
-public class LogInUIService(AuthenticationModule authenticationModule, Action<User> onUserFound): UIService, IAuthenticationUI
+public class LogInUIService: AuthenticationUIService
 {
-    protected override string Subtitle => "LOG IN";
+    protected override string Subtitle => "log in";
 
-    protected override void DisplayCore()
-    { 
-        var (username, password) = ((IAuthenticationUI)this).GetCredentials();
-        onUserFound(authenticationModule.LogIn(username, password));
+    public LogInUIService(AuthenticationModule authenticationModule)
+    {
+        AuthenticationMethod = authenticationModule.LogIn;
     }
 }

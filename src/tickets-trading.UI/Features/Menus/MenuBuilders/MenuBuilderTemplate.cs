@@ -10,7 +10,12 @@ public abstract class MenuBuilderTemplate(ApplicationState applicationState): IM
     
     protected MenuItem CreateItem(string title, Action action)
     {
-        return new(_currentFreeItemId++, $"{title}", action);
+        return new(_currentFreeItemId++.ToString(), title, action);
+    }
+
+    protected MenuItem CreateItem(string id, string title, Action action)
+    {
+        return new(id, title, action);
     }
 
     protected NonSelectableMenuItem CreateNonSelectableItem(string content = "") => new(content);
@@ -18,7 +23,7 @@ public abstract class MenuBuilderTemplate(ApplicationState applicationState): IM
     public void BuildMiddle(List<MenuItem> items)
     {
         BuildMiddleCore(items);
-        items.Add(CreateItem($"Exit", () =>
+        items.Add(CreateItem("e", "Exit", () =>
         {
             ApplicationState.Running = false;
         }));

@@ -8,30 +8,37 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 public class AuthenticationMenuBuilder: MenuBuilderTemplate
 {
-    private readonly SignUpUIService? _signUpUiService;
-    private readonly LogInUIService? _logInUiService;
+    private readonly LogInUIService _logInUiService;
 
-    private readonly AuthenticationHelpService _authHelpService = new();
+    private Action<User> OnUserFound;
 
     public AuthenticationMenuBuilder(AuthenticationModule authModule, ApplicationState applicationState): base(applicationState)
     {
-        Action<User> onUserFound = user =>
+        OnUserFound = user =>
         {
             ApplicationState.CurrentUser = user;
             ApplicationState.MenuBuilder = user is Admin ? 
-                LazyMenuBuildersLibrary.AdminMainMenuBuilder?.Value
-                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
+                LazyMenuBuildersLibrary.AdminMainMenuBuilder!.Value
+                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value;
         };
-
-        _signUpUiService = new(authModule, onUserFound);
-        _logInUiService = new(authModule, onUserFound);
+        
+        _logInUiService = new(authModule)
+        {
+            OnUserFound = OnUserFound
+        };
     }
     
     protected override void BuildMiddleCore(List<MenuItem> items)
     {
-        items.Add(CreateItem("Sign Up", _signUpUiService!.Execute));
-        items.Add(CreateItem("Log In", _logInUiService!.Execute));
+        items.Add(CreateItem("Sign Up", () =>
+        {
+            LazyMenuBuildersLibrary.SignUpMenuBuilder!.Value.OnUserFound = OnUserFound;
+            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.SignUpMenuBuilder.Value;
+        }));
+        items.Add(CreateItem("Log In", () =>
+        {
+            _logInUiService.Execute();
+        }));
         items.Add(CreateNonSelectableItem());
-        items.Add(CreateItem("Help", _authHelpService!.Execute));
     }
 }

@@ -20,7 +20,7 @@ public class RegularUserAccountInformationMenuBuilder(ApplicationState applicati
         }));
         items.Add(CreateItem("Add Money", _moneyAddingService.Execute));
         items.Add(CreateNonSelectableItem());
-        items.Add(CreateItem("Back", () =>
+        items.Add(CreateItem("b", "Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
         }));

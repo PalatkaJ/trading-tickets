@@ -38,10 +38,10 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
         }
         
         items.Add(CreateNonSelectableItem());
-        items.Add(CreateItem("Back", () =>
+        items.Add(CreateItem("b", "Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder?.Value;
         } ));
-        items.Add(CreateItem("Help", _helpService.Execute));
+        items.Add(CreateItem("h","Help", _helpService.Execute));
     }
 }

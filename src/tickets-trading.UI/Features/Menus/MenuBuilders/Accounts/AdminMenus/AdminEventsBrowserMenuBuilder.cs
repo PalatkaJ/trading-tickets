@@ -29,10 +29,10 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
         }
         
         items.Add(CreateNonSelectableItem());
-        items.Add(CreateItem("Back", () =>
+        items.Add(CreateItem("b", "Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsMenuBuilder?.Value;
         } ));
-        items.Add(CreateItem("Help", _helpService.Execute));
+        items.Add(CreateItem("h", "Help", _helpService.Execute));
     }
 }

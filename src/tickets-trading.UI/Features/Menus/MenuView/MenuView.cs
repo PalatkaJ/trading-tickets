@@ -15,11 +15,6 @@ public class MenuView: ConsoleViewBase, IMenuView
             ShowMessage(menuItem + "\n");
         }
     }
-
-    private bool IndexIsValid(int idx)
-    {
-        return idx >= 1 && idx <= Options!.Count;
-    }
     
     public MenuItem ChooseOption()
     {
@@ -34,14 +29,15 @@ public class MenuView: ConsoleViewBase, IMenuView
             if (invalidOption) ShowMessage("Invalid option. Try again.\n");
             
             var optionId = GetInput("Select: ");
-            if (int.TryParse(optionId, out var idx) && IndexIsValid(idx))
+            try
             {
-                // we cant use just Options[idx] because we have other items in the list
-                // other than choosable by user (such as empty lines)
-                return Options.First(o => o.Id == idx);
+                var item = Options.First(o => o.Id == optionId);
+                return item;
             }
-
-            invalidOption = true;
+            catch (InvalidOperationException)
+            {
+                invalidOption = true;   
+            }
         }
     }
 }

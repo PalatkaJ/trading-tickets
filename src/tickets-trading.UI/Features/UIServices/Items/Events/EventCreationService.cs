@@ -2,29 +2,39 @@ using System.Globalization;
 using tickets_trading.Application.ServiceHandlers;
 using tickets_trading.Domain;
 using tickets_trading.UI.Core.Startup;
+using tickets_trading.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_trading.UI.Features.UIServices.Items.Events;
 
 public class EventCreationService(ApplicationState applicationState): UIService
-{
-    private readonly EventCreationHandler _eventCreationHandler = new(applicationState.EventsRepository!, (Admin)applicationState.CurrentUser!);
-    private readonly EventCreationConfirmationService _eventCreationConfirmationService = new();
-    
+{ 
     protected override string Subtitle => "event creation";
 
     protected override void DisplayCore()
     {
-        var e = new Event();
-        string title = GetInput("Title: ");
-        string description = GetInput("Description: ");
-        DateTime date = PromptForDateTime();
-        string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
-        int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
-        int price = int.Parse(GetInput("Price of one ticket: "));
-        e.SetFields(title, description, date,place, nrOfTickets, price);
-        
-        _eventCreationHandler.Handle(e);
-        _eventCreationConfirmationService.Execute();
+        MessageService confirmation = new EventCreationConfirmationService();
+
+        try
+        {
+            var e = new Event();
+            string title = GetInput("Title: ");
+            string description = GetInput("Description: ");
+            DateTime date = PromptForDateTime();
+            string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
+            int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
+            int price = int.Parse(GetInput("Price of one ticket: "));
+            e.SetFields(title, description, date, place, nrOfTickets, price);
+
+            EventCreationHandler eventCreationHandler =
+                new(applicationState.EventsRepository!, (Admin)applicationState.CurrentUser!);
+            eventCreationHandler.Handle(e);
+        }
+        catch (Exception ex)
+        {
+            confirmation = new EventCreationFailedService(ex.Message);
+        }
+
+        confirmation.Execute();
     }
     
     private DateTime PromptForDateTime()

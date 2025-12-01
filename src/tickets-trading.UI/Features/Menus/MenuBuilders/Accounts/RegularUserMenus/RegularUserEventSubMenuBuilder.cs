@@ -25,7 +25,7 @@ public class RegularUserEventSubMenuBuilder(ApplicationState applicationState): 
             _ticketsPurchaseService.Execute(Event);
         }));
         items.Add(CreateNonSelectableItem());
-        items.Add(CreateItem("Back", () =>
+        items.Add(CreateItem("b", "Back", () =>
         {
             ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder?.Value;
         }));
