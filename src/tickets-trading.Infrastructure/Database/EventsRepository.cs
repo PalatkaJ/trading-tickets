@@ -8,7 +8,7 @@ public class EventsRepository(AppDbContext context): IEventsRepository
 {
     public void AddEvent(Event e)
     {
-        context.Attach(e.Organizer);
+        context.Attach(e.Organizer!);
         context.Events.Add(e);
         context.SaveChanges();
     }

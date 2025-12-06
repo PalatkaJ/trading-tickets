@@ -15,16 +15,20 @@ public class TicketsPurchaseHandler(DbContext context)
 {
     public RegularUser? User;
     
-    public PurchaseResult Handle(Event e)
+    public PurchaseResult Handle(Event e, int nrOfTickets)
     {
-        if (!e.TicketIsAvailable()) return PurchaseResult.NoTicketsAvailable;
-        if (!User!.HasEnoughMoney(e.Price)) return PurchaseResult.NotEnoughMoney;
+        long totalPrice = e.Price * nrOfTickets;
+        if (!e.TicketsAreAvailable(nrOfTickets)) return PurchaseResult.NoTicketsAvailable;
+        if (!User!.HasEnoughMoney(totalPrice)) return PurchaseResult.NotEnoughMoney;
         
-        var ticket = e.GetATicket();
+        var tickets = e.GetTickets(nrOfTickets);
         
-        User.Buy(e.Price);
-        ticket.SetOwner(User);
-        User.OwnedTickets.Add(ticket);
+        User.RemoveMoney(totalPrice);
+        foreach (var ticket in tickets)
+        {
+            ticket.SetOwner(User);
+            User.OwnedTickets.Add(ticket);
+        }
 
         context.SaveChanges();
         return PurchaseResult.Success;

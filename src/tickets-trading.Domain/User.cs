@@ -5,13 +5,11 @@ public abstract class User
     public Guid Id { get; private set; } = Guid.NewGuid();
     public string Username { get; private set; }
     public string PasswordHash { get; private set; }
-    public string PasswordSalt { get; private set; }
     
-    public void SetFields(string username, string hash, string salt)
+    public void SetFields(string username, string hash)
     {
         Username = username;
         PasswordHash = hash;
-        PasswordSalt = salt;
     }
 
     protected abstract string GetRole { get; }

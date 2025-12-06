@@ -14,6 +14,14 @@ public class EventCreationService(ApplicationState applicationState): UIService
     {
         MessageService confirmation = new EventCreationConfirmationService();
 
+        ShowMessage("""
+                    --
+                    You will be prompted for title, description, 
+                    date and time, place, number of tickets to release
+                    and price of each ticket for the event
+                    --
+                    
+                    """);
         try
         {
             var e = new Event();
@@ -22,7 +30,7 @@ public class EventCreationService(ApplicationState applicationState): UIService
             DateTime date = PromptForDateTime();
             string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
             int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
-            int price = int.Parse(GetInput("Price of one ticket: "));
+            long price = long.Parse(GetInput("Price of one ticket: "));
             e.SetFields(title, description, date, place, nrOfTickets, price);
 
             EventCreationHandler eventCreationHandler =

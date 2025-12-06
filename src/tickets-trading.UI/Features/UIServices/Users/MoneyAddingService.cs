@@ -17,12 +17,13 @@ public class MoneyAddingService(ApplicationState applicationState): UIService
         MessageService confirmationService = new MoneyAddingConfirmationService();
         try
         {
-            int MoneyToBeAdded = int.Parse(GetInput("Enter the amount of cash you want to insert: "));
+            long MoneyToBeAdded = long.Parse(GetInput("Enter the amount of cash you want to insert: "));
+            if (MoneyToBeAdded < 0) throw new InvalidOperationException(); 
             _moneyAddingHandler.Handle(MoneyToBeAdded);
         }
-        catch (FormatException ex)
+        catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
         {
-            confirmationService = new MoneyAddingFailedService("Please enter a valid decimal integer");
+            confirmationService = new MoneyAddingFailedService("Please enter a valid decimal positive number");
         }
         catch (OverflowException)
         {

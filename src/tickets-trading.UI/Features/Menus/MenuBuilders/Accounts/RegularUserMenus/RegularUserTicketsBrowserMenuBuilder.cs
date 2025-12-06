@@ -9,6 +9,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMen
 
 public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "my tickets";
+    
     private readonly ItemDetailService<Ticket> _itemDetailService = new();
     private readonly BrowseItemsHelpService<Ticket> _helpService = new();
     
@@ -31,7 +33,7 @@ public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationSt
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         } ));
         items.Add(CreateItem("h", "Help", _helpService.Execute));
     }

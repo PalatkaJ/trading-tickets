@@ -8,13 +8,15 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 
 public class AdminMainMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "main menu";
+    
     private readonly ItemDetailService<User> _adminDetailService = new();
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         items.Add(CreateItem("Events", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.AdminEventsMenuBuilder!.Value);
         }));
         
         items.Add(CreateItem("Account Information", () =>

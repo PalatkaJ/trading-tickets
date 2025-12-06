@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using tickets_trading.Application.Authentication;
 using tickets_trading.Application.DatabaseAPI;
-using tickets_trading.Infrastructure.Authentication;
+using tickets_trading.Domain;
 using tickets_trading.Infrastructure.Database;
 
 namespace tickets_trading.UI.Core.Startup;
@@ -9,7 +10,7 @@ public static class ProgramSetup
 {
     public static AuthenticationModule SetUpAuthenticationService(IUserRepository userRepo)
     {
-        var hasher = new Pbkdf2PasswordHasher();
+        var hasher = new PasswordHasher<User>();
         return new AuthenticationModule(userRepo, hasher);
     }
 

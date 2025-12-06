@@ -3,25 +3,26 @@ using tickets_trading.Application.Authentication;
 using tickets_trading.Application.DatabaseAPI;
 using tickets_trading.UI.Features.Menus.MenuBuilders;
 using tickets_trading.UI.Features.Menus.MenuView;
+using tickets_trading.UI.Features.UIServices.Menu;
 
 namespace tickets_trading.UI.Core.Startup;
 
 public class ConsoleAppController
 {
     private readonly ApplicationState? _applicationState;
-
-    private readonly IMenuView? _menuView;
     
-    public ConsoleAppController(AuthenticationModule authenticationModule, IMenuView menuView,
+    public ConsoleAppController(AuthenticationModule authenticationModule, MenuService menuService,
         IUserRepository userRepo, IEventsRepository eventsRepo, ITicketsRepository ticketsRepo, DbContext context)
     {
         _applicationState = new();
         LazyMenuBuildersLibrary.Initialize(_applicationState, authenticationModule);
-        
-        _menuView = menuView;
-        _applicationState.MenuBuilder = LazyMenuBuildersLibrary.AuthenticationMenuBuilder?.Value;
+        _applicationState.MenuBuilder = LazyMenuBuildersLibrary.AuthenticationMenuBuilder!.Value;
 
+        _applicationState.MenuService = menuService;
+        _applicationState.MenuService.MenuBuilder = _applicationState.MenuBuilder;
+        
         _applicationState.DbContext = context;
+        
         _applicationState.UserRepository = userRepo;
         _applicationState.EventsRepository = eventsRepo;
         _applicationState.TicketsRepository = ticketsRepo;
@@ -31,18 +32,10 @@ public class ConsoleAppController
     {
         while (_applicationState!.Running)
         {
-            SetMenuViewOptions();
+            _applicationState.MenuService!.DisplayContent();
             
-            _menuView!.DisplayContent();
-            
-            var option = _menuView!.ChooseOption();
+            var option = _applicationState.MenuService!.ChooseOption();
             option.ExecuteAction();
         }
-    }
-
-    private void SetMenuViewOptions()
-    {
-        var options = _applicationState!.MenuBuilder!.BuildMenu();
-        _menuView!.Options = options;
     }
 }

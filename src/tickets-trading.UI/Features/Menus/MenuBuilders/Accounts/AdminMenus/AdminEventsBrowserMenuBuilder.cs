@@ -9,6 +9,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 
 public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "browse created events";
+    
     private readonly ItemDetailService<Event> _itemDetailService = new();
     private readonly BrowseItemsHelpService<Event> _helpService = new();
     
@@ -31,7 +33,7 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AdminEventsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.AdminEventsMenuBuilder!.Value);
         } ));
         items.Add(CreateItem("h", "Help", _helpService.Execute));
     }

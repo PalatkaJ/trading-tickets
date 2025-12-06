@@ -23,13 +23,32 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
     protected override void DisplayCore()
     {
         _ticketsPurchaseHandler.User = (RegularUser)applicationState.CurrentUser!;
-        
-        var confirmation = GetInput("Do you really want to purchase this ticket? [y/n]: ");
-        if (confirmation == "n") return;
-        
-        var purchaseSuccessful = _ticketsPurchaseHandler.Handle(_e!);
 
         MessageService msgService = new TicketsPurchaseConfirmationService();
+        int nrOfTickets = 1;
+        try
+        {
+            nrOfTickets = int.Parse(GetInput("How many tickets would you like to purchase (default is 1)?: "));
+        }
+        catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
+        {
+            msgService = new TicketsPurchaseFailedService("""
+                                                          Please enter a valid decimal positive number 
+                                                          as the number of tickets you would like to purchase
+                                                          """);
+        }
+        catch (OverflowException)
+        {
+            msgService = new TicketsPurchaseFailedService("""
+                                                          Value was either too large or too small
+                                                          as the number of tickets you would like to purchase
+                                                          """);
+        }
+
+        var confirmation = GetInput("Do you really want to purchase these tickets? [y/n]: ");
+        if (confirmation == "n") return;
+        
+        var purchaseSuccessful = _ticketsPurchaseHandler.Handle(_e!, nrOfTickets);
         
         switch (purchaseSuccessful)
         {

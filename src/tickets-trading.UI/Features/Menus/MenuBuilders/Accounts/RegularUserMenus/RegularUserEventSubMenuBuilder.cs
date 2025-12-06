@@ -10,6 +10,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMen
 
 public class RegularUserEventSubMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "tickets purchase";
+    
     private readonly ItemDetailService<Event> _itemDetailService = new();
     private readonly TicketsPurchaseService _ticketsPurchaseService = new(applicationState);
     
@@ -20,14 +22,14 @@ public class RegularUserEventSubMenuBuilder(ApplicationState applicationState): 
         items.Add(CreateItem($"Show Detail About {Event!.Title}", () => {
             _itemDetailService.Execute(Event!);
         }));
-        items.Add(CreateItem($"Purchase Ticket For {Event!.Price} {Event!.Currency}", () =>
+        items.Add(CreateItem($"Purchase Tickets", () =>
         {
             _ticketsPurchaseService.Execute(Event);
         }));
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder!.Value);
         }));
     }
 }

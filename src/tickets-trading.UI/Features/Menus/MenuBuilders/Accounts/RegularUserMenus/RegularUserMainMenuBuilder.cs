@@ -9,22 +9,24 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMen
 
 public class RegularUserMainMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "main menu";
+    
     private readonly ItemDetailService<Ticket> _itemDetailService = new();
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
-        items.Add(CreateItem("Buy Tickets", () =>
+        items.Add(CreateItem("Tickets Shop", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder!.Value);
         }));
         items.Add(CreateItem("My Tickets", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserTicketsBrowserMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserTicketsBrowserMenuBuilder!.Value);
         }));
         
         items.Add(CreateItem("Account Information", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserAccountInformationMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserAccountInformationMenuBuilder!.Value);
         }));
         items.Add(CreateNonSelectableItem());
     }

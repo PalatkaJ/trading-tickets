@@ -6,21 +6,21 @@ public class RegularUser : User
     public ICollection<Ticket> OwnedTickets { get; private set; } = new List<Ticket>();
 
 
-    public bool HasEnoughMoney(int price) => MoneyLeft >= price;
+    public bool HasEnoughMoney(long price) => MoneyLeft >= price;
 
-    public void Buy(int price)
+    public void RemoveMoney(long price)
     {
         MoneyLeft -= price;
     }
 
-    public void AddMoney(int money)
+    public void AddMoney(long money)
     {
         MoneyLeft += money;
     }
 
-    private int CalculateMoneySpent()
+    private long CalculateMoneySpent()
     {
-        int res = 0;
+        long res = 0;
         foreach (var t in OwnedTickets)
         {
             res += t.Event!.Price;
@@ -33,13 +33,12 @@ public class RegularUser : User
 
     public override string ToString()
     {
-        int totalMoneySpent = CalculateMoneySpent();
         return base.ToString() + $"""
                                
                                   
                 Money Left: {MoneyLeft}
                 Owned Tickets: {OwnedTickets?.Count ?? 0}
-                Money Spent: {totalMoneySpent}
+                Money Spent: {CalculateMoneySpent()}
                 """;
     }
 }

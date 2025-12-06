@@ -8,6 +8,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 public class AuthenticationMenuBuilder: MenuBuilderTemplate
 {
+    public override string Title => "authentication";
+    
     private readonly LogInUIService _logInUiService;
 
     private Action<User> OnUserFound;
@@ -17,9 +19,9 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
         OnUserFound = user =>
         {
             ApplicationState.CurrentUser = user;
-            ApplicationState.MenuBuilder = user is Admin ? 
+            ChangeMenuTo(user is Admin ? 
                 LazyMenuBuildersLibrary.AdminMainMenuBuilder!.Value
-                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value;
+                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         };
         
         _logInUiService = new(authModule)
@@ -28,12 +30,12 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
         };
     }
     
-    protected override void BuildMiddleCore(List<MenuItem> items)
+    protected override void BuildMiddle(List<MenuItem> items)
     {
         items.Add(CreateItem("Sign Up", () =>
         {
             LazyMenuBuildersLibrary.SignUpMenuBuilder!.Value.OnUserFound = OnUserFound;
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.SignUpMenuBuilder.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.SignUpMenuBuilder.Value);
         }));
         items.Add(CreateItem("Log In", () =>
         {

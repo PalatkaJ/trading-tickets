@@ -7,8 +7,8 @@ public class TicketsRepository(AppDbContext context): ITicketsRepository
 {
     public void AddTicket(Ticket ticket)
     {
-        context.Attach(ticket.Event);
-        context.Attach(ticket.TicketOwner);
+        context.Attach(ticket.Event!);
+        context.Attach(ticket.TicketOwner!);
         context.Tickets.Add(ticket);
         context.SaveChanges();
     }

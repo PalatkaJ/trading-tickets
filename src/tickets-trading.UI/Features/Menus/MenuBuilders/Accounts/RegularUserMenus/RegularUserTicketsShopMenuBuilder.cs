@@ -5,20 +5,20 @@ using tickets_trading.UI.Features.Menus.MenuView;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
 
-public class RegularUserBuyTicketsMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
+public class RegularUserTicketsShopMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
-    
+    public override string Title => "tickets shop";
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         items.Add(CreateItem("Browse Available Events", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserBrowseEventsMenuBuilder!.Value);
         }));
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b","Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         }));
     }
 }

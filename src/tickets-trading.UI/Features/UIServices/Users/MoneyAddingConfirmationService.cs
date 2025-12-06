@@ -4,7 +4,7 @@ namespace tickets_trading.UI.Features.UIServices.Users;
 
 public class MoneyAddingConfirmationService: MessageService
 {
-    protected override string Subtitle => "money added successfully";
+    protected override string Subtitle =>  "money added successfully";
 
     protected override string Msg => 
         $"""

@@ -6,19 +6,19 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.Common;
 
 public abstract class UsersMenuBuilderTemplate(ApplicationState applicationState): MenuBuilderTemplate(applicationState)
 {
-    protected override void BuildMiddleCore(List<MenuItem> items)
+    protected override void BuildMiddle(List<MenuItem> items)
     {
         BuildMiddleSpecific(items);
         items.Add(CreateItem("m", "Main Menu", () =>
         {
-            ApplicationState.MenuBuilder = ApplicationState.CurrentUser is Admin
+            ChangeMenuTo(ApplicationState.CurrentUser is Admin
                 ? LazyMenuBuildersLibrary.AdminMainMenuBuilder!.Value
-                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value;
+                : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         }));
         items.Add(CreateItem("l","Log Out", () =>
         {
             ApplicationState.CurrentUser = null;
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AuthenticationMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.AuthenticationMenuBuilder!.Value);
         }));
     }
 

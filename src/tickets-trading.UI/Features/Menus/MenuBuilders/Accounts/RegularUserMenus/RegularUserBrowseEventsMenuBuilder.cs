@@ -9,6 +9,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMen
 
 public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "browse available events";
+    
     private readonly ItemDetailService<Event> _itemDetailService = new();
     private readonly BrowseItemsHelpService<Event> _helpService = new();
     private readonly RegularUserEventSubMenuBuilder _eventSubMenuBuilder = new(applicationState);
@@ -20,13 +22,13 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
         bool eventsAvailable = false;
         foreach (var e in allEvents)
         {
-            if (!e.TicketIsAvailable()) continue;
+            if (!e.TicketsAreAvailable(nrOfTickets: 1)) continue;
             
             items.Add(CreateItem($"{e.Title}", () =>
             {
                 var menuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
                 menuBuilder!.Event = e;
-                ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
+                ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder!.Value);
             }));
 
             eventsAvailable = true;
@@ -40,7 +42,7 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder!.Value);
         } ));
         items.Add(CreateItem("h","Help", _helpService.Execute));
     }

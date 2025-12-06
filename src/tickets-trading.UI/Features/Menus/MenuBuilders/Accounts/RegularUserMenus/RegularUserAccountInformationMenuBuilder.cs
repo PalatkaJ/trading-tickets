@@ -9,6 +9,8 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMen
 
 public class RegularUserAccountInformationMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
+    public override string Title => "account information";
+    
     private readonly ItemDetailService<User> _usersDetailService = new();
     private readonly MoneyAddingService _moneyAddingService = new(applicationState);
     
@@ -22,7 +24,7 @@ public class RegularUserAccountInformationMenuBuilder(ApplicationState applicati
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.RegularUserMainMenuBuilder?.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         }));
     }
 }

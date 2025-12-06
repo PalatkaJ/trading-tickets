@@ -3,9 +3,12 @@ using tickets_trading.UI.Features.Menus.MenuView;
 
 namespace tickets_trading.UI.Features.Menus.MenuBuilders;
 
-public abstract class MenuBuilderTemplate(ApplicationState applicationState): IMenuBuilder
+public abstract class MenuBuilderTemplate(ApplicationState applicationState)
 {
+    public abstract string Title { get; }
+    
     protected readonly ApplicationState ApplicationState = applicationState;
+    
     private int _currentFreeItemId = 1; 
     
     protected MenuItem CreateItem(string title, Action action)
@@ -20,15 +23,23 @@ public abstract class MenuBuilderTemplate(ApplicationState applicationState): IM
 
     protected NonSelectableMenuItem CreateNonSelectableItem(string content = "") => new(content);
 
-    public void BuildMiddle(List<MenuItem> items)
+    protected void ChangeMenuTo(MenuBuilderTemplate targetMenu)
     {
-        BuildMiddleCore(items);
+        ApplicationState.MenuBuilder = targetMenu;
+        ApplicationState.MenuService!.MenuBuilder = targetMenu;
+    }
+
+    public List<MenuItem> BuildMenu()
+    {
+        var items = new List<MenuItem>();
+        BuildMiddle(items);
         items.Add(CreateItem("e", "Exit", () =>
         {
             ApplicationState.Running = false;
         }));
         _currentFreeItemId = 1;
+        return items;
     }
 
-    protected abstract void BuildMiddleCore(List<MenuItem> items);
+    protected abstract void BuildMiddle(List<MenuItem> items);
 }

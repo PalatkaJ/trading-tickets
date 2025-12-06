@@ -8,12 +8,14 @@ namespace tickets_trading.UI.Features.Menus.MenuBuilders.Authentication;
 
 public class SignUpMenuBuilder(AuthenticationModule authModule, ApplicationState applicationState): MenuBuilderTemplate(applicationState)
 {
+    public override string Title => "sign up";
+    
     private readonly SignUpUIService _signUpUiService = new(applicationState);
     private readonly AuthenticationHelpService _authHelpService = new();
 
     public Action<User>? OnUserFound;
     
-    protected override void BuildMiddleCore(List<MenuItem> items)
+    protected override void BuildMiddle(List<MenuItem> items)
     {
         _signUpUiService.OnUserFound = OnUserFound;
         items.Add(CreateItem("Sign Up as an Admin", ()=>
@@ -28,7 +30,7 @@ public class SignUpMenuBuilder(AuthenticationModule authModule, ApplicationState
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>
         {
-            ApplicationState.MenuBuilder = LazyMenuBuildersLibrary.AuthenticationMenuBuilder!.Value;
+            ChangeMenuTo(LazyMenuBuildersLibrary.AuthenticationMenuBuilder!.Value);
         }));
         items.Add(CreateItem("h", "Help", _authHelpService.Execute));
     }

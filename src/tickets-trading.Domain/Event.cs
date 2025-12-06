@@ -9,7 +9,7 @@ public class Event
     public string? Title { get; private set; }
 
     public string? Description { get; private set; }
-    public int Price { get; private set; }
+    public long Price { get; private set; }
     public string Currency => "Czk";
 
     public DateTime? Date { get; private set; }
@@ -37,7 +37,7 @@ public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
                 """;
     }
     
-    public void SetFields(string title, string description, DateTime date, string place, int numberOfTickets, int price)
+    public void SetFields(string title, string description, DateTime date, string place, int numberOfTickets, long price)
     {
         Title = title;
         Description = description;
@@ -65,11 +65,11 @@ public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
         }
     }
 
-    public bool TicketIsAvailable() => CurrentFreeTicket < Tickets.Count;
+    public bool TicketsAreAvailable(int nrOfTickets) => CurrentFreeTicket + nrOfTickets - 1 < Tickets.Count;
 
-    public Ticket GetATicket()
+    public List<Ticket> GetTickets(int nr)
     {
-        return Tickets.ElementAt(CurrentFreeTicket++);
+        return Tickets.Take(new Range(CurrentFreeTicket+nr, nr)).ToList();
     }
     
     // for EF core

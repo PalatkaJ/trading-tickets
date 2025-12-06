@@ -1,21 +1,29 @@
-using tickets_trading.UI.Core.View;
+using tickets_trading.UI.Features.Menus.MenuBuilders;
+using tickets_trading.UI.Features.Menus.MenuView;
 
-namespace tickets_trading.UI.Features.Menus.MenuView;
+namespace tickets_trading.UI.Features.UIServices.Menu;
 
-public class MenuView: ConsoleViewBase, IMenuView
+public class MenuService: UIService, IMenuView
 {
     public IReadOnlyList<MenuItem>? Options { private get; set; }
     
-    protected override void DisplayBody()
+    public MenuBuilderTemplate? MenuBuilder { get; set; }
+    
+    protected override string Subtitle => MenuBuilder!.Title;
+    
+    protected override void DisplayCore()
     {
-        if (Options is null) throw new ArgumentNullException(nameof(Options));
-
+        Options = MenuBuilder!.BuildMenu();
+        
+        bool first = true;        
         foreach (var menuItem in Options)
         {
-            ShowMessage(menuItem + "\n");
+            if (!first) ShowMessage("\n");
+            ShowMessage(menuItem.ToString());
+            first = false;
         }
     }
-    
+
     public MenuItem ChooseOption()
     {
         if (Options is null) throw new ArgumentNullException(nameof(Options));
