@@ -1,0 +1,38 @@
+using Microsoft.AspNetCore.Identity;
+using tickets_shop.Application.DatabaseAPI;
+using tickets_shop.Domain;
+
+namespace tickets_shop.Application.Authentication;
+
+public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<User> hasher)
+{
+    public User SignUp<TUser>(string username, string password) where TUser: User, new() {
+        var user = userRepo.GetUserByUsernameLight(username);
+        if (user is not null) throw new InvalidOperationException(AppMessages.UserAlreadyExists);
+        
+        user = new TUser();
+        var hashedPasswd = hasher.HashPassword(user!, password);
+        user.SetFields(username, hashedPasswd);
+        
+        userRepo.AddUser(user);
+        return user;
+    }
+
+    public User LogIn(string username, string password) {
+        var user = userRepo.GetUserByUsernameLight(username) ?? throw new InvalidOperationException(AppMessages.UserNotFound);
+        var result = hasher.VerifyHashedPassword(user, user.PasswordHash, password);
+        switch (result)
+        {
+            case PasswordVerificationResult.Failed:
+                throw new UnauthorizedAccessException(AppMessages.InvalidPassword);
+            case PasswordVerificationResult.Success:
+                break;
+            case PasswordVerificationResult.SuccessRehashNeeded:
+                var hashedPasswd = hasher.HashPassword(user, password);
+                user.SetFields(username, hashedPasswd);
+                break;
+        }
+        userRepo.LoadUsersDependencies(user);
+        return user;
+    }
+}
