@@ -1,19 +1,21 @@
-namespace tickets_shop.Domain;
+using tickets_shop.Domain.Tickets;
+
+namespace tickets_shop.Domain.Users;
 
 public class RegularUser : User
 {
-    public long MoneyLeft { get; private set; }
+    public int MoneyLeft { get; private set; }
     public ICollection<Ticket> OwnedTickets { get; private set; } = new List<Ticket>();
 
 
-    public bool HasEnoughMoney(long price) => MoneyLeft >= price;
+    public bool HasEnoughMoney(int price) => MoneyLeft >= price;
 
-    public void RemoveMoney(long price)
+    public void RemoveMoney(int price)
     {
         MoneyLeft -= price;
     }
 
-    public void AddMoney(long money)
+    public void AddMoney(int money)
     {
         MoneyLeft += money;
     }
@@ -37,7 +39,7 @@ public class RegularUser : User
                                
                                   
                 Money Left: {MoneyLeft} {AppConstants.Currency}
-                Owned Tickets: {OwnedTickets?.Count ?? 0}
+                Owned Tickets: {OwnedTickets.Count}
                 Money Spent: {CalculateMoneySpent()} {AppConstants.Currency}
                 """;
     }

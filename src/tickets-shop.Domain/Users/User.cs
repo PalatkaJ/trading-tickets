@@ -1,4 +1,4 @@
-namespace tickets_shop.Domain;
+namespace tickets_shop.Domain.Users;
 
 public abstract class User
 {

@@ -8,6 +8,6 @@ public class TicketsPurchaseFailedService(string additional): MessageService
     
     protected override string Msg => 
         $"""
-        Ticket purchase failed: {additional}
+        Ticket(s) purchase failed: {additional}
         """;
 }

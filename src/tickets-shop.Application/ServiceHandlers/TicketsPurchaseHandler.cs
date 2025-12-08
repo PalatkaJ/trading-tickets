@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_shop.Domain;
+using tickets_shop.Domain.Events;
+using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.ServiceHandlers;
 
@@ -10,26 +12,51 @@ public enum PurchaseResult
     NotEnoughMoney
 }
 
-public class TicketsPurchaseHandler(DbContext context)
+public class TicketsPurchaseHandler(DbContext context): CommitDbChangesHandler(context)
 {
     public RegularUser? User;
-    
-    public PurchaseResult Handle(Event e, int nrOfTickets)
+
+    private bool CheckPurchaseValid(Event e, int nrOfTickets, int totalPrice, out PurchaseResult result)
     {
-        long totalPrice = e.Price * nrOfTickets;
-        if (!e.TicketsAreAvailable(nrOfTickets)) return PurchaseResult.NoTicketsAvailable;
-        if (!User!.HasEnoughMoney(totalPrice)) return PurchaseResult.NotEnoughMoney;
-        
+        if (!e.TicketsAreAvailable(nrOfTickets))
+        {
+            result = PurchaseResult.NoTicketsAvailable;
+            return false;
+        }
+
+        if (!User!.HasEnoughMoney(totalPrice))
+        {
+            result = PurchaseResult.NotEnoughMoney;
+            return false;
+        }
+
+        result = PurchaseResult.Success;
+        return true;
+    }
+
+    private void ProceedOnSuccess(Event e, int nrOfTickets, int totalPrice)
+    {
         var tickets = e.GetTickets(nrOfTickets);
         
-        User.RemoveMoney(totalPrice);
+        User!.RemoveMoney(totalPrice);
         foreach (var ticket in tickets)
         {
             ticket.SetOwner(User);
             User.OwnedTickets.Add(ticket);
         }
+    }
+    
+    public PurchaseResult Handle(Event e, int nrOfTickets)
+    {
+        int totalPrice = e.Price * nrOfTickets;
+        bool success = CheckPurchaseValid(e, nrOfTickets, totalPrice, out var result);
 
-        context.SaveChanges();
-        return PurchaseResult.Success;
+        if (success)
+        {
+            ProceedOnSuccess(e, nrOfTickets, totalPrice);
+            CommitChanges();
+        }
+        
+        return result;
     }
 }

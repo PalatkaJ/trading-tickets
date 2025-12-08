@@ -7,11 +7,11 @@ public class MoneyAddingConfirmationService: MessageService
 {
     protected override string Subtitle =>  "money added successfully";
 
-    public long Amount { get; set; }
+    public long Amount { get; init; }
 
     protected override string Msg => 
         $"""
         You have successfully recharged {Amount} {AppConstants.Currency} into your account,
-        see more in account information tab
+        see more in account information tab.
         """;
 }

@@ -1,5 +1,6 @@
 using tickets_shop.Domain;
 using tickets_shop.Application.DatabaseAPI;
+using tickets_shop.Domain.Tickets;
 
 namespace tickets_shop.Infrastructure.Database;
 

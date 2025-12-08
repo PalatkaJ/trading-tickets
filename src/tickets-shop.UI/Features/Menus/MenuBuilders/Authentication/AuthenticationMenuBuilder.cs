@@ -2,6 +2,8 @@ using tickets_shop.Domain;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.UIServices.Authentication;
 using tickets_shop.Application.Authentication;
+using tickets_shop.Domain.Users;
+using tickets_shop.Infrastructure.Authentication;
 
 namespace tickets_shop.UI.Features.Menus.MenuBuilders.Authentication;
 
@@ -13,7 +15,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
 
     private Action<User> OnUserFound;
 
-    public AuthenticationMenuBuilder(AuthenticationModule authModule, ApplicationState applicationState): base(applicationState)
+    public AuthenticationMenuBuilder(IAuthenticationModule authModule, ApplicationState applicationState): base(applicationState)
     {
         OnUserFound = user =>
         {
@@ -38,7 +40,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
         }));
         items.Add(CreateItem("Log In", () =>
         {
-            _logInUiService.DisplayContent();
+            _logInUiService.Execute();
         }));
         items.Add(CreateNonSelectableItem());
     }

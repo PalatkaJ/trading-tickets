@@ -6,7 +6,7 @@ public class ItemDetailService<TItem>: MessageService
 {
     private TItem? _item;
     
-    public void DisplayContent(TItem item)
+    public void Execute(TItem item)
     {
         _item = item;
         DisplayContent();

@@ -6,6 +6,6 @@ public class BrowseItemsHelpService<TItem>: HelpService
 {
     protected override string Msg => 
         $"""
-        Select given {typeof(TItem).Name.ToLower()} title to proceed
+        Select given {typeof(TItem).Name.ToLower()} title to proceed.
         """;
 }

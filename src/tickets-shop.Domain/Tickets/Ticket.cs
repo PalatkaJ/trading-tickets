@@ -1,4 +1,7 @@
-namespace tickets_shop.Domain;
+using tickets_shop.Domain.Events;
+using tickets_shop.Domain.Users;
+
+namespace tickets_shop.Domain.Tickets;
 
 public class Ticket
 {

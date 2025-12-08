@@ -8,6 +8,6 @@ public class AuthenticationConfirmationUIService: MessageService
 
     protected override string Msg => 
         """
-        Authentication was successful, you are logged in now
+        Authentication was successful, you are logged in now.
         """;
 }

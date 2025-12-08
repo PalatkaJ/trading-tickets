@@ -8,7 +8,7 @@ public class TicketsPurchaseConfirmationService: MessageService
 
     protected override string Msg => 
         """
-        Ticket(s) was/were purchased successfully, you can check them out by browsing all tickets
-        that you have already bought
+        Ticket(s) purchased successfully, you can see that by browsing all tickets
+        that you have already bought.
         """;
 }

@@ -1,10 +1,16 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 
 namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 
 public abstract class UsersMenuBuilderTemplate(ApplicationState applicationState): MenuBuilderTemplate(applicationState)
 {
+    protected void EagerLoadDependencies()
+    {
+        ApplicationState.UserRepository!.EagerLoadUsersDependencies(ApplicationState.CurrentUser!);
+    }
+    
     protected override void BuildMiddle(List<MenuItem> items)
     {
         BuildMiddleSpecific(items);

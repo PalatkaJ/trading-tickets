@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -20,7 +21,7 @@ public class AdminMainMenuBuilder(ApplicationState applicationState): UsersMenuB
         
         items.Add(CreateItem(SiteNames.AccountInfo, () =>
         {
-            _adminDetailService.DisplayContent(ApplicationState.CurrentUser!);
+            _adminDetailService.Execute(ApplicationState.CurrentUser!);
         }));
         items.Add(CreateNonSelectableItem());
     }

@@ -9,6 +9,6 @@ public class EventCreationConfirmationService: MessageService
     protected override string Msg => 
         """
         Event was created successfully, you can check it out by browsing all events
-        that you have already created
+        that you have already created.
         """;
 }

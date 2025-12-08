@@ -1,4 +1,6 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Events;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -16,11 +18,12 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         Admin admin = (Admin)ApplicationState.CurrentUser!;
+        EagerLoadDependencies();
         
         foreach (var e in admin.OrganizedEvents)
         {
             items.Add(CreateItem($"{e.Title}", () => {
-                _itemDetailService.DisplayContent(e);
+                _itemDetailService.Execute(e);
             }));
         }
 
@@ -34,6 +37,6 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
         {
             ChangeMenuTo(LazyMenuBuildersLibrary.AdminEventsMenuBuilder!.Value);
         } ));
-        items.Add(CreateItem("h", "Help", _helpService.DisplayContent));
+        items.Add(CreateItem("h", "Help", _helpService.Execute));
     }
 }

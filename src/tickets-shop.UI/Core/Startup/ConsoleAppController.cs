@@ -3,6 +3,7 @@ using tickets_shop.UI.Features.Menus.MenuBuilders;
 using tickets_shop.UI.Features.UIServices.Menu;
 using tickets_shop.Application.Authentication;
 using tickets_shop.Application.DatabaseAPI;
+using tickets_shop.Infrastructure.Authentication;
 
 namespace tickets_shop.UI.Core.Startup;
 
@@ -27,7 +28,7 @@ public class ConsoleAppController
         _applicationState.TicketsRepository = ticketsRepo;
     }
     
-    public ConsoleAppController(AuthenticationModule authenticationModule, MenuService menuService,
+    public ConsoleAppController(IAuthenticationModule authenticationModule, MenuService menuService,
         IUserRepository userRepo, IEventsRepository eventsRepo, ITicketsRepository ticketsRepo, DbContext context)
     {
         _applicationState = new();

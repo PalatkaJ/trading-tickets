@@ -8,6 +8,8 @@ public abstract class UIService: ConsoleIOTemplate
     private readonly string _subtitleLine = new(AppConstants.SubTitleBoarder, AppConstants.HeadLineLength);
     protected abstract string Subtitle { get; }
 
+    public virtual void Execute() => DisplayContent();
+    
     private void DisplaySubtitle()
     {
         ShowMessage($"""

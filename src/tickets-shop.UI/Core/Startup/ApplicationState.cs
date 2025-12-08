@@ -3,6 +3,7 @@ using tickets_shop.Domain;
 using tickets_shop.UI.Features.Menus.MenuBuilders;
 using tickets_shop.UI.Features.UIServices.Menu;
 using tickets_shop.Application.DatabaseAPI;
+using tickets_shop.Domain.Users;
 
 namespace tickets_shop.UI.Core.Startup;
 

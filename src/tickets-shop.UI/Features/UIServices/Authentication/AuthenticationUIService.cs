@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 using tickets_shop.UI.Core.InputOutput;
 
@@ -10,7 +11,7 @@ public abstract class AuthenticationUIService : UIService
 
     public Action<User>? OnUserFound;
 
-    public void DisplayContent(Func<string, string, User> f)
+    public void Execute(Func<string, string, User> f)
     {
         AuthenticationMethod = f;
         DisplayContent();
@@ -22,20 +23,26 @@ public abstract class AuthenticationUIService : UIService
         var password = GetInput("Password: ");
         return (username!, password!);
     }
+
+    private MessageService TryProcessUser(string username, string passwd)
+    {
+        try
+        {
+            var user = AuthenticationMethod!(username, passwd);
+            OnUserFound!(user);
+            return new AuthenticationConfirmationUIService();
+        }
+        catch (Exception ex) when (ex is InvalidOperationException || ex is UnauthorizedAccessException)
+        {
+            return new AuthenticationFailedUIService(ex.Message);
+        }
+    }
     
     protected override void DisplayCore()
     { 
         var (username, password) = GetCredentials();
-        MessageService authResult = new AuthenticationConfirmationUIService(); 
-        try
-        {
-            var user = AuthenticationMethod!(username, password);
-            OnUserFound!(user);
-        }
-        catch (Exception ex) when (ex is InvalidOperationException || ex is UnauthorizedAccessException)
-        {
-            authResult = new AuthenticationFailedUIService(ex.Message);
-        }
+        var authResult = TryProcessUser(username, password);
+        
         authResult.DisplayContent();
     }
 }

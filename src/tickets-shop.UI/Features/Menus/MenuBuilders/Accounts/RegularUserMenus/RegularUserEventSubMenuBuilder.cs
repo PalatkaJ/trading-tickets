@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Events;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -19,11 +20,11 @@ public class RegularUserEventSubMenuBuilder(ApplicationState applicationState): 
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         items.Add(CreateItem($"Show Detail About {Event!.Title}", () => {
-            _itemDetailService.DisplayContent(Event!);
+            _itemDetailService.Execute(Event!);
         }));
         items.Add(CreateItem($"Purchase Tickets", () =>
         {
-            _ticketsPurchaseService.DisplayContent(Event);
+            _ticketsPurchaseService.Execute(Event);
         }));
         items.Add(CreateNonSelectableItem());
         items.Add(CreateItem("b", "Back", () =>

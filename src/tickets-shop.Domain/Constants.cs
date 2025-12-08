@@ -30,8 +30,8 @@ public static class AppMessages
     public const string InvalidPassword = "Invalid password.";
     public const string UserNotFound = "User not found. Please sign up first.";
     public const string UserAlreadyExists = "User already exists. Please use log in.";
-    public const string NumberOverflow = "Please enter a valid decimal positive number.";
-    public const string NumberInvalidFormat = "Provided number was either too large or too small.";
+    public const string NumberOverflow = "Provided number was either too large or too small.";
+    public const string NumberInvalidFormat = "Please enter a valid decimal positive number.";
     public const string NotEnoughTickets = "There are no tickets left for this event.";
     public const string NotEnoughMoney =
         "You don't have enough money in your account.\nPlease recharge money in account information tab.";

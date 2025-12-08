@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.DatabaseAPI;
 
@@ -8,6 +9,5 @@ public interface IUserRepository
     public User? GetUserById(Guid id);
     public User? GetUserByUsernameLight(string username);
 
-    public void LoadUsersDependencies(User id);
-    
+    public void EagerLoadUsersDependencies(User id);
 }

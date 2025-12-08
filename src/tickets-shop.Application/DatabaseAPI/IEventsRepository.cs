@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Events;
 
 namespace tickets_shop.Application.DatabaseAPI;
 
@@ -9,5 +10,4 @@ public interface IEventsRepository
     public IQueryable<Event> GetAllEventsWithDependencies();
     
     public Event? GetEventById(Guid id);
-    
 }

@@ -1,4 +1,6 @@
-namespace tickets_shop.Domain;
+using tickets_shop.Domain.Events;
+
+namespace tickets_shop.Domain.Users;
 
 public class Admin : User
 {

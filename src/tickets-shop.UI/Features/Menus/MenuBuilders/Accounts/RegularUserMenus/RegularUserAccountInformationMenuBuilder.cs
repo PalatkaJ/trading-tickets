@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -17,7 +18,7 @@ public class RegularUserAccountInformationMenuBuilder(ApplicationState applicati
     {
         items.Add(CreateItem("Show Detail", () =>
         {
-            _usersDetailService.DisplayContent(ApplicationState.CurrentUser!);
+            _usersDetailService.Execute(ApplicationState.CurrentUser!);
         }));
         items.Add(CreateItem(SiteNames.AddMoney, _moneyAddingService.DisplayContent));
         items.Add(CreateNonSelectableItem());

@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Events;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -10,30 +11,35 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
 {
     public override string Title => SiteNames.RegBrowseEvents;
     
-    private readonly ItemDetailService<Event> _itemDetailService = new();
     private readonly BrowseItemsHelpService<Event> _helpService = new();
-    private readonly RegularUserEventSubMenuBuilder _eventSubMenuBuilder = new(applicationState);
+    
+    private void CreateEventItem(Event e, List<MenuItem> items)
+    {
+        if (!e.TicketsAreAvailable(nrOfTickets: 1)) return;
+            
+        items.Add(CreateItem($"{e.Title}", () =>
+        {
+            var menuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
+            menuBuilder!.Event = e;
+            ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder!.Value);
+        }));
+    }
+
+    private IQueryable<Event> EagerLoadAllEvents()
+    {
+        return ApplicationState.EventsRepository!.GetAllEventsWithDependencies();
+    } 
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
-        var allEvents = ApplicationState.EventsRepository!.GetAllEventsWithDependencies();
-
-        bool eventsAvailable = false;
-        foreach (var e in allEvents)
+        IQueryable<Event> allEvents = EagerLoadAllEvents();
+        
+        foreach (var e in allEvents!)
         {
-            if (!e.TicketsAreAvailable(nrOfTickets: 1)) continue;
-            
-            items.Add(CreateItem($"{e.Title}", () =>
-            {
-                var menuBuilder = LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder?.Value;
-                menuBuilder!.Event = e;
-                ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder!.Value);
-            }));
-
-            eventsAvailable = true;
+            CreateEventItem(e, items);
         }
 
-        if (!eventsAvailable)
+        if (!allEvents.Any())
         {
             items.Add(CreateNonSelectableItem("There are no available events, please come back later"));
         }
@@ -43,6 +49,6 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
         {
             ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserBuyTicketsMenuBuilder!.Value);
         } ));
-        items.Add(CreateItem("h",SiteNames.Help, _helpService.DisplayContent));
+        items.Add(CreateItem("h",SiteNames.Help, _helpService.Execute));
     }
 }

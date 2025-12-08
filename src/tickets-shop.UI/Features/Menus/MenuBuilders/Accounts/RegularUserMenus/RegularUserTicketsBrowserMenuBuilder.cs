@@ -1,4 +1,6 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Tickets;
+using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -16,11 +18,12 @@ public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationSt
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         RegularUser user = (RegularUser)ApplicationState.CurrentUser!;
+        EagerLoadDependencies();
         
         foreach (var t in user.OwnedTickets)
         {
-            items.Add(CreateItem($"{t.Event!.Title}", () => {
-                _itemDetailService.DisplayContent(t);
+            items.Add(CreateItem($"{t.Event!.Title} ({t.Seat})", () => {
+                _itemDetailService.Execute(t);
             }));
         }
 
@@ -34,6 +37,6 @@ public class RegularUserTicketsBrowserMenuBuilder(ApplicationState applicationSt
         {
             ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         } ));
-        items.Add(CreateItem("h", SiteNames.Help, _helpService.DisplayContent));
+        items.Add(CreateItem("h", SiteNames.Help, _helpService.Execute));
     }
 }

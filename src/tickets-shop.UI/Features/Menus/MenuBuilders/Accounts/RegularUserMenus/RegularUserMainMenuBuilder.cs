@@ -1,4 +1,5 @@
 using tickets_shop.Domain;
+using tickets_shop.Domain.Tickets;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
@@ -9,8 +10,6 @@ namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
 public class RegularUserMainMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
     public override string Title => SiteNames.Main;
-    
-    private readonly ItemDetailService<Ticket> _itemDetailService = new();
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {

@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Identity;
+using tickets_shop.Application.Authentication;
 using tickets_shop.Application.DatabaseAPI;
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 
-namespace tickets_shop.Application.Authentication;
+namespace tickets_shop.Infrastructure.Authentication;
 
-public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<User> hasher)
+public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<User> hasher): IAuthenticationModule
 {
     public User SignUp<TUser>(string username, string password) where TUser: User, new() {
         var user = userRepo.GetUserByUsernameLight(username);
@@ -32,7 +34,6 @@ public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<Use
                 user.SetFields(username, hashedPasswd);
                 break;
         }
-        userRepo.LoadUsersDependencies(user);
         return user;
     }
 }

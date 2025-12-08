@@ -6,6 +6,6 @@ public abstract class MessageService: EnterToContinueDecorator
 
     protected override void DisplayCore()
     {
-        ShowMessage(Msg + ".");
+        ShowMessage(Msg);
     }
 }

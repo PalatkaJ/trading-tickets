@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using tickets_shop.Domain;
 using tickets_shop.Application.DatabaseAPI;
+using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Infrastructure.Database;
 
@@ -12,7 +13,7 @@ public class UserRepository(AppDbContext context): IUserRepository
         context.SaveChanges();
     }
 
-    public void LoadUsersDependencies(User user)
+    public void EagerLoadUsersDependencies(User user)
     {
         switch (user)
         {
@@ -20,7 +21,6 @@ public class UserRepository(AppDbContext context): IUserRepository
                 context.Entry(admin)
                     .Collection(a => a.OrganizedEvents)
                     .Query()
-                    .Include(e => e.Tickets)
                     .Load();
                 break;
             case RegularUser ru:

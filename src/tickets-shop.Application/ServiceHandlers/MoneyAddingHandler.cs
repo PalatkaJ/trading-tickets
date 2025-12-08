@@ -1,11 +1,14 @@
+using Microsoft.EntityFrameworkCore;
 using tickets_shop.Domain;
+using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.ServiceHandlers;
 
-public class MoneyAddingHandler(RegularUser user)
+public class MoneyAddingHandler(RegularUser user, DbContext context): CommitDbChangesHandler(context)
 {
-    public void Handle(long moneyToAdd)
+    public void Handle(int moneyToAdd)
     {
         user.AddMoney(moneyToAdd);
+        CommitChanges();
     }
 }

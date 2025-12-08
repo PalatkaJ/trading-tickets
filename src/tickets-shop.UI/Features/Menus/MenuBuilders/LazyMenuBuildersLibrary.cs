@@ -3,12 +3,13 @@ using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
 using tickets_shop.UI.Features.Menus.MenuBuilders.Authentication;
 using tickets_shop.Application.Authentication;
+using tickets_shop.Infrastructure.Authentication;
 
 namespace tickets_shop.UI.Features.Menus.MenuBuilders;
 
 public static class LazyMenuBuildersLibrary
 {
-    private static AuthenticationModule? _authModule;
+    private static IAuthenticationModule? _authModule;
     private static ApplicationState? _appState;
 
     public static Lazy<AuthenticationMenuBuilder>? AuthenticationMenuBuilder { get; private set; }
@@ -26,7 +27,7 @@ public static class LazyMenuBuildersLibrary
 
     private static bool _initialized = false;
 
-    public static void Initialize(ApplicationState appState, AuthenticationModule authModule)
+    public static void Initialize(ApplicationState appState, IAuthenticationModule authModule)
     {
         if (_initialized)
             return;
