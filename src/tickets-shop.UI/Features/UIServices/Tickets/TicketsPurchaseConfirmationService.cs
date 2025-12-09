@@ -1,6 +1,6 @@
 using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
-namespace tickets_shop.UI.Features.UIServices.Items.Tickets;
+namespace tickets_shop.UI.Features.UIServices.Tickets;
 
 public class TicketsPurchaseConfirmationService: MessageService
 {

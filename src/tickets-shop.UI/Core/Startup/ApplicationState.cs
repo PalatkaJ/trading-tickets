@@ -10,8 +10,8 @@ namespace tickets_shop.UI.Core.Startup;
 public class ApplicationState
 {
     public bool Running = true;
-    
     public User? CurrentUser;
+    
     public MenuBuilderTemplate? MenuBuilder;
     public MenuService? MenuService;
 

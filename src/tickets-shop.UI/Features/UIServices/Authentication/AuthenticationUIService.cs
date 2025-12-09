@@ -20,7 +20,7 @@ public abstract class AuthenticationUIService : UIService
     private (string, string) GetCredentials()
     {
         var username = GetInput("Username: ");
-        var password = GetInput("Password: ");
+        var password = GetInputInvisible("Password: ");
         return (username!, password!);
     }
 

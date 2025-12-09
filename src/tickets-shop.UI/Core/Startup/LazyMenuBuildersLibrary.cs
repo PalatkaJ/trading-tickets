@@ -1,11 +1,9 @@
-using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Authentication;
 using tickets_shop.Application.Authentication;
-using tickets_shop.Infrastructure.Authentication;
+using tickets_shop.UI.Features.Menus.MenuBuilders.Authentication;
+using tickets_shop.UI.Features.Menus.MenuBuilders.Users.AdminMenus;
+using tickets_shop.UI.Features.Menus.MenuBuilders.Users.RegularUserMenus;
 
-namespace tickets_shop.UI.Features.Menus.MenuBuilders;
+namespace tickets_shop.UI.Core.Startup;
 
 public static class LazyMenuBuildersLibrary
 {

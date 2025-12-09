@@ -2,7 +2,7 @@ using tickets_shop.Domain;
 
 namespace tickets_shop.UI.Core.InputOutput;
 
-public abstract class ConsoleIOTemplate: IInputOutput
+public abstract class ConsoleIOTemplate
 {
     private readonly StreamReader _reader = new (Console.OpenStandardInput());
     private readonly StreamWriter _writer = new (Console.OpenStandardOutput()) {AutoFlush = true};
@@ -13,6 +13,22 @@ public abstract class ConsoleIOTemplate: IInputOutput
     {
         _writer.Write(prompt);
         return _reader.ReadLine()!;
+    }
+
+    public string GetInputInvisible(string? prompt = null)
+    {
+        _writer.Write(prompt);
+        
+        string res = "";
+        ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+        
+        while (keyPressed.Key != ConsoleKey.Enter)
+        {
+            res += keyPressed.KeyChar;
+            keyPressed = Console.ReadKey(true);
+        }
+        
+        return res;
     }
 
     public void ShowMessage(string? message = null) => _writer.Write(message);

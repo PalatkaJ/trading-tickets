@@ -12,15 +12,7 @@ public abstract class User
         PasswordHash = hash;
     }
 
-    protected abstract string GetRole { get; }
-    
-    public override string ToString()
-    {
-        return $"""
-                Username:     {Username}
-                Role:         {GetRole}
-                """;
-    }
+    public abstract string GetRole { get; }
     
     // Required for EF Core to materialize the object
     public User() { }

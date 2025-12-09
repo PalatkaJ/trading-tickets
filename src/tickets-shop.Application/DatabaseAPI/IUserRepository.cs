@@ -1,4 +1,3 @@
-using tickets_shop.Domain;
 using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.DatabaseAPI;

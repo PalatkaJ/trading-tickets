@@ -7,7 +7,8 @@ public class RegularUser : User
     public int MoneyLeft { get; private set; }
     public ICollection<Ticket> OwnedTickets { get; private set; } = new List<Ticket>();
 
-
+    public override string GetRole => UserRoles.RegularUser;
+    
     public bool HasEnoughMoney(int price) => MoneyLeft >= price;
 
     public void RemoveMoney(int price)
@@ -19,8 +20,8 @@ public class RegularUser : User
     {
         MoneyLeft += money;
     }
-
-    private long CalculateMoneySpent()
+    
+    public long CalculateMoneySpent()
     {
         long res = 0;
         foreach (var t in OwnedTickets)
@@ -29,18 +30,5 @@ public class RegularUser : User
         }
 
         return res;
-    }
-
-    protected override string GetRole => UserRoles.RegularUser;
-
-    public override string ToString()
-    {
-        return base.ToString() + $"""
-                               
-                                  
-                Money Left: {MoneyLeft} {AppConstants.Currency}
-                Owned Tickets: {OwnedTickets.Count}
-                Money Spent: {CalculateMoneySpent()} {AppConstants.Currency}
-                """;
     }
 }

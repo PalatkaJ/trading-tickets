@@ -1,11 +1,9 @@
 using tickets_shop.Domain;
 using tickets_shop.Domain.Events;
 using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
-using tickets_shop.UI.Features.UIServices.Items.Events;
 
-namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
+namespace tickets_shop.UI.Features.Menus.MenuBuilders.Users.RegularUserMenus;
 
 public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
@@ -13,9 +11,9 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
     
     private readonly BrowseItemsHelpService<Event> _helpService = new();
     
-    private void CreateEventItem(Event e, List<MenuItem> items)
+    private bool TryCreateEventItem(Event e, List<MenuItem> items)
     {
-        if (!e.TicketsAreAvailable(nrOfTickets: 1)) return;
+        if (!e.TicketsAreAvailable(nrOfTickets: 1)) return false;
             
         items.Add(CreateItem($"{e.Title}", () =>
         {
@@ -23,6 +21,8 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
             menuBuilder!.Event = e;
             ChangeMenuTo(LazyMenuBuildersLibrary.RegularUserEventSubMenuBuilder!.Value);
         }));
+        
+        return true;
     }
 
     private IQueryable<Event> LazyLoadAllEvents()
@@ -33,13 +33,14 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
         IQueryable<Event> allEvents = LazyLoadAllEvents();
-        
+
+        bool foundEvent = false;
         foreach (var e in allEvents!)
         {
-            CreateEventItem(e, items);
+            foundEvent = foundEvent || TryCreateEventItem(e, items);
         }
 
-        if (!allEvents.Any())
+        if (!foundEvent)
         {
             items.Add(CreateNonSelectableItem("There are no available events, please come back later"));
         }

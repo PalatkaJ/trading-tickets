@@ -22,20 +22,6 @@ public class Event
     public int TicketCount { get; private set; }
 
     public ICollection<Ticket> Tickets { get; private set; } = new List<Ticket>();
-
-    public override string ToString()
-    {
-        return $"""
-                Title:        {Title}
-                
-                Description:  {Description}
-                Date:         {Date!.Value:dd MMM yyyy HH:mm}
-                Place:        {Place}
-
-                Tickets:      {TicketCount - CurrentFreeTicket}/{TicketCount} available
-                Price:        {Price} {AppConstants.Currency}
-                """;
-    }
     
     public void SetFields(string title, string description, DateTime date, string place, int numberOfTickets, int price)
     {
@@ -46,23 +32,12 @@ public class Event
         Price = price;
         CurrentFreeTicket = 0;
         TicketCount = numberOfTickets;
-        GenerateTickets();
     }
 
     public void SetOrganizer(Admin admin)
     {
         Organizer = admin;
         OrganizerId = admin.Id;
-    }
-    
-    private void GenerateTickets()
-    {
-        for (int i = 0; i < TicketCount; i++)
-        {
-            Ticket ticket = new();
-            ticket.SetFields($"Seat-{i + 1}", this);
-            Tickets.Add(ticket);
-        }
     }
 
     public bool TicketsAreAvailable(int nrOfTickets) => CurrentFreeTicket + nrOfTickets - 1 < TicketCount;

@@ -1,13 +1,11 @@
 using System.Globalization;
-using System.Runtime.InteropServices.JavaScript;
-using tickets_shop.Domain;
-using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 using tickets_shop.Application.ServiceHandlers;
 using tickets_shop.Domain.Events;
 using tickets_shop.Domain.Users;
+using tickets_shop.UI.Core.Startup;
+using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
-namespace tickets_shop.UI.Features.UIServices.Items.Events;
+namespace tickets_shop.UI.Features.UIServices.Events;
 
 public class EventCreationService(ApplicationState applicationState): UIService
 { 
@@ -54,7 +52,7 @@ public class EventCreationService(ApplicationState applicationState): UIService
     private DateTime PromptForDateTime()
     {
         const string format = "yyyy-MM-dd HH:mm";
-        var input = GetInput($"Time and date of event in format {format} (e.g. 2025-07-23 14:30): ").Trim();
+        var input = GetInput($"Time and date of event in exact format {format} (e.g. 2025-07-23 14:30): ").Trim();
         
         return DateTime.ParseExact(input, format, CultureInfo.InvariantCulture, DateTimeStyles.None); 
     }

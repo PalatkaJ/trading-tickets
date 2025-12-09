@@ -5,7 +5,7 @@ using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
-namespace tickets_shop.UI.Features.UIServices.Items.Tickets;
+namespace tickets_shop.UI.Features.UIServices.Tickets;
 
 public class TicketsPurchaseService(ApplicationState applicationState): UIService
 {

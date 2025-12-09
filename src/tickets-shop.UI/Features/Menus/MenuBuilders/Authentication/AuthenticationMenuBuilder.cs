@@ -3,7 +3,6 @@ using tickets_shop.UI.Core.Startup;
 using tickets_shop.UI.Features.UIServices.Authentication;
 using tickets_shop.Application.Authentication;
 using tickets_shop.Domain.Users;
-using tickets_shop.Infrastructure.Authentication;
 
 namespace tickets_shop.UI.Features.Menus.MenuBuilders.Authentication;
 

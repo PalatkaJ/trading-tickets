@@ -1,6 +1,6 @@
 using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
-namespace tickets_shop.UI.Features.UIServices.Items.Events;
+namespace tickets_shop.UI.Features.UIServices.Events;
 
 public class EventCreationConfirmationService: MessageService
 {

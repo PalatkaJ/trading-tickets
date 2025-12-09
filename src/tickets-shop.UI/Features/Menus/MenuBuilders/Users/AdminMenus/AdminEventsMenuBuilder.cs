@@ -1,9 +1,8 @@
 using tickets_shop.Domain;
 using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
-using tickets_shop.UI.Features.UIServices.Items.Events;
+using tickets_shop.UI.Features.UIServices.Events;
 
-namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
+namespace tickets_shop.UI.Features.Menus.MenuBuilders.Users.AdminMenus;
 
 public class AdminEventsMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {

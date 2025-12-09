@@ -1,12 +1,9 @@
 using tickets_shop.Domain;
 using tickets_shop.Domain.Events;
-using tickets_shop.Domain.Users;
 using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.UI.Features.UIServices.Items;
-using tickets_shop.UI.Features.UIServices.Items.Events;
 
-namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.AdminMenus;
+namespace tickets_shop.UI.Features.Menus.MenuBuilders.Users.AdminMenus;
 
 public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {
@@ -17,7 +14,7 @@ public class AdminEventsBrowserMenuBuilder(ApplicationState applicationState): U
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
-        Admin admin = (Admin)ApplicationState.CurrentUser!;
+        Domain.Users.Admin admin = (Domain.Users.Admin)ApplicationState.CurrentUser!;
         EagerLoadDependencies();
         
         foreach (var e in admin.OrganizedEvents)

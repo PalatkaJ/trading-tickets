@@ -1,8 +1,7 @@
 using tickets_shop.UI.Core.Startup;
-using tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.Common;
 using tickets_shop.Domain;
 
-namespace tickets_shop.UI.Features.Menus.MenuBuilders.Accounts.RegularUserMenus;
+namespace tickets_shop.UI.Features.Menus.MenuBuilders.Users.RegularUserMenus;
 
 public class RegularUserTicketsShopMenuBuilder(ApplicationState applicationState): UsersMenuBuilderTemplate(applicationState)
 {

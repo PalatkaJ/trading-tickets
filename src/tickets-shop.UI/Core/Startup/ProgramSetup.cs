@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using tickets_shop.Domain;
 using tickets_shop.Infrastructure.Database;
 using tickets_shop.Application.Authentication;
 using tickets_shop.Application.DatabaseAPI;
