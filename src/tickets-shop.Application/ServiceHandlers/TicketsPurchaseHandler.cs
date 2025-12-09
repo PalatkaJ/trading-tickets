@@ -12,7 +12,7 @@ public enum PurchaseResult
     NotEnoughMoney
 }
 
-public class TicketsPurchaseHandler(DbContext context): CommitDbChangesHandler(context)
+public class TicketsPurchaseHandler(DbContext context)
 {
     public RegularUser? User;
 
@@ -54,9 +54,9 @@ public class TicketsPurchaseHandler(DbContext context): CommitDbChangesHandler(c
         if (success)
         {
             ProceedOnSuccess(e, nrOfTickets, totalPrice);
-            CommitChanges();
         }
-        
+
+        context.SaveChanges();
         return result;
     }
 }

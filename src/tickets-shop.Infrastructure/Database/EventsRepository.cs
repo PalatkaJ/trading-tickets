@@ -14,7 +14,7 @@ public class EventsRepository(AppDbContext context): IEventsRepository
         context.SaveChanges();
     }
 
-    public IQueryable<Event> GetAllEventsWithDependencies()
+    public IQueryable<Event> LazyGetAllEventsWithDependencies()
     {
         return context.Events
             .Include(e => e.Organizer)

@@ -4,11 +4,11 @@ using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.ServiceHandlers;
 
-public class MoneyAddingHandler(RegularUser user, DbContext context): CommitDbChangesHandler(context)
+public class MoneyAddingHandler(RegularUser user, DbContext context)
 {
     public void Handle(int moneyToAdd)
     {
         user.AddMoney(moneyToAdd);
-        CommitChanges();
+        context.SaveChanges();
     }
 }

@@ -7,7 +7,7 @@ public interface IEventsRepository
 {
     public void AddEvent(Event e);
 
-    public IQueryable<Event> GetAllEventsWithDependencies();
+    public IQueryable<Event> LazyGetAllEventsWithDependencies();
     
     public Event? GetEventById(Guid id);
 }

@@ -6,7 +6,7 @@ using tickets_shop.Domain.Users;
 
 namespace tickets_shop.Application.ServiceHandlers;
 
-public class EventCreationHandler(IEventsRepository eventsRepo, Admin admin, DbContext context): CommitDbChangesHandler(context)
+public class EventCreationHandler(IEventsRepository eventsRepo, Admin admin, DbContext context)
 {
     public void Handle(Event e)
     {
@@ -14,6 +14,6 @@ public class EventCreationHandler(IEventsRepository eventsRepo, Admin admin, DbC
         admin.OrganizedEvents.Add(e);
         eventsRepo.AddEvent(e);
         
-        CommitChanges();
+        context.SaveChanges();
     }
 }

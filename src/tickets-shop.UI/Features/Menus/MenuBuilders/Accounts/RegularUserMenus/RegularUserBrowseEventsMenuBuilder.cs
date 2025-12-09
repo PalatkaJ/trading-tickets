@@ -25,14 +25,14 @@ public class RegularUserBrowseEventsMenuBuilder(ApplicationState applicationStat
         }));
     }
 
-    private IQueryable<Event> EagerLoadAllEvents()
+    private IQueryable<Event> LazyLoadAllEvents()
     {
-        return ApplicationState.EventsRepository!.GetAllEventsWithDependencies();
+        return ApplicationState.EventsRepository!.LazyGetAllEventsWithDependencies();
     } 
     
     protected override void BuildMiddleSpecific(List<MenuItem> items)
     {
-        IQueryable<Event> allEvents = EagerLoadAllEvents();
+        IQueryable<Event> allEvents = LazyLoadAllEvents();
         
         foreach (var e in allEvents!)
         {
