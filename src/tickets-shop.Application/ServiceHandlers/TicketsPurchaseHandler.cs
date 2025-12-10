@@ -36,7 +36,7 @@ public class TicketsPurchaseHandler(DbContext context)
 
     private void ProceedOnSuccess(Event e, int nrOfTickets, int totalPrice)
     {
-        var tickets = e.GetTickets(nrOfTickets);
+        var tickets = e.GetRangeOfFreeTickets(nrOfTickets);
         
         User!.RemoveMoney(totalPrice);
         foreach (var ticket in tickets)

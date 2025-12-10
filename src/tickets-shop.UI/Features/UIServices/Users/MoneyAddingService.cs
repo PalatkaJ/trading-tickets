@@ -25,12 +25,12 @@ public class MoneyAddingService(ApplicationState applicationState): UIService
         }
         catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
         {
-            msgService = new MoneyAddingFailedService(AppMessages.NumberInvalidFormat);
+            msgService = new MoneyAddingFailedService(ErrorMessages.NumberInvalidFormat);
             return false;
         }
         catch (OverflowException)
         {
-            msgService = new MoneyAddingFailedService(AppMessages.NumberOverflow);
+            msgService = new MoneyAddingFailedService(ErrorMessages.NumberOverflow);
             return false;
         }
     }

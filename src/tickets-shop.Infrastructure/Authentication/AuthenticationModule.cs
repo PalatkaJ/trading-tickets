@@ -10,7 +10,7 @@ public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<Use
 {
     public User SignUp<TUser>(string username, string password) where TUser: User, new() {
         var user = userRepo.GetUserByUsernameLight(username);
-        if (user is not null) throw new InvalidOperationException(AppMessages.UserAlreadyExists);
+        if (user is not null) throw new InvalidOperationException(ErrorMessages.UserAlreadyExists);
         
         user = new TUser();
         var hashedPasswd = hasher.HashPassword(user!, password);
@@ -21,12 +21,12 @@ public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<Use
     }
 
     public User LogIn(string username, string password) {
-        var user = userRepo.GetUserByUsernameLight(username) ?? throw new InvalidOperationException(AppMessages.UserNotFound);
+        var user = userRepo.GetUserByUsernameLight(username) ?? throw new InvalidOperationException(ErrorMessages.UserNotFound);
         var result = hasher.VerifyHashedPassword(user, user.PasswordHash, password);
         switch (result)
         {
             case PasswordVerificationResult.Failed:
-                throw new UnauthorizedAccessException(AppMessages.InvalidPassword);
+                throw new UnauthorizedAccessException(ErrorMessages.InvalidPassword);
             case PasswordVerificationResult.Success:
                 break;
             case PasswordVerificationResult.SuccessRehashNeeded:

@@ -14,7 +14,7 @@ public class EventCreationHandler(IEventsRepository eventsRepo, Admin admin, DbC
         for (int i = 0; i < e.TicketCount; i++)
         {
             Ticket ticket = new();
-            ticket.SetFields(i + 1, e);
+            ticket.AssociateTicketWithEvent(i + 1, e);
             e.Tickets.Add(ticket);
         }
     }

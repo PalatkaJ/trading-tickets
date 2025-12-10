@@ -34,7 +34,7 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
         catch (Exception ex) when (ex is FormatException || ex is InvalidOperationException)
         {
             msgService = new TicketsPurchaseFailedService($"""
-                                                           {AppMessages.NumberInvalidFormat} 
+                                                           {ErrorMessages.NumberInvalidFormat} 
                                                            {additionalMsg}
                                                            """);
             return false;
@@ -42,7 +42,7 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
         catch (OverflowException)
         {
             msgService = new TicketsPurchaseFailedService($"""
-                                                           {AppMessages.NumberOverflow}
+                                                           {ErrorMessages.NumberOverflow}
                                                            {additionalMsg}
                                                            """);
             return false;
@@ -59,10 +59,10 @@ public class TicketsPurchaseService(ApplicationState applicationState): UIServic
         switch (purchaseSuccessful)
         {
             case PurchaseResult.NotEnoughMoney:
-                msgService = new TicketsPurchaseFailedService(AppMessages.NotEnoughMoney);
+                msgService = new TicketsPurchaseFailedService(ErrorMessages.NotEnoughMoney);
                 break;
             case PurchaseResult.NoTicketsAvailable:
-                msgService = new TicketsPurchaseFailedService(AppMessages.NotEnoughTickets);
+                msgService = new TicketsPurchaseFailedService(ErrorMessages.NotEnoughTickets);
                 break;
             case PurchaseResult.Success:
                 // the msgService is set to confirmation by default

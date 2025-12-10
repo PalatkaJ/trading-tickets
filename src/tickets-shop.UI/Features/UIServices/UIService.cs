@@ -5,7 +5,7 @@ namespace tickets_shop.UI.Features.UIServices;
 
 public abstract class UIService: ConsoleIOTemplate
 {
-    private readonly string _subtitleLine = new(AppConstants.SubTitleBoarder, AppConstants.HeadLineLength);
+    private readonly string _subtitleLine = new(AppConstants.SubTitleBoarder, AppConstants.WindowWidth);
     protected abstract string Subtitle { get; }
 
     public virtual void Execute() => DisplayContent();

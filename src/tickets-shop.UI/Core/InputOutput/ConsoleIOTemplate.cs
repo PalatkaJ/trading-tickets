@@ -7,7 +7,7 @@ public abstract class ConsoleIOTemplate
     private readonly StreamReader _reader = new (Console.OpenStandardInput());
     private readonly StreamWriter _writer = new (Console.OpenStandardOutput()) {AutoFlush = true};
     
-    private readonly string _headline = new(AppConstants.HeadTitleBoarder, AppConstants.HeadLineLength);
+    private readonly string _headline = new(AppConstants.HeadTitleBoarder, AppConstants.WindowWidth);
     
     public string GetInput(string? prompt = null)
     {
@@ -45,7 +45,7 @@ public abstract class ConsoleIOTemplate
 
     protected string GetTransformedTitle(string title)
     {
-        string emptySpace = new(' ', (AppConstants.HeadLineLength - title.Length)/2);
+        string emptySpace = new(' ', (AppConstants.WindowWidth - title.Length)/2);
         return emptySpace + title.ToUpper() + emptySpace;
     }
 
