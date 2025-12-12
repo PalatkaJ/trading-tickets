@@ -13,4 +13,4 @@ all dependency packages and start the application. You should see the authentica
 application, which should be pretty straight forward, if not, use the help options for advices. For selecting an option from the menu just type the symbol and click enter
 (e.g. 1 - Sing Up, just press 1 and enter, or e - exit, just press e and enter).
 # Other
-For more information please see the doxy generated documentation (and more words in the title page).
+For more information please see the doxy generated [documentation](html/index.html) of the project (and more programming-related text from me in the title page).
