@@ -2,10 +2,14 @@ using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_shop.UI.Features.UIServices.Tickets;
 
+/// <summary>
+/// A concrete message service used to display a standardized confirmation message
+/// to the user after a successful ticket purchase transaction.
+/// </summary>
 public class TicketsPurchaseConfirmationService: MessageService
 {
     protected override string Subtitle => "purchase successful";
-
+    
     protected override string Msg => 
         """
         Ticket(s) purchased successfully, you can see that by browsing all tickets

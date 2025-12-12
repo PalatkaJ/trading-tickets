@@ -10,21 +10,21 @@ public class SignUpMenuBuilder(IAuthenticationModule authModule, ApplicationStat
 {
     public override string Title => SiteNames.SignUp;
     
-    private readonly SignUpUIService _signUpUiService = new();
+    private readonly SignUpService _signUpService = new();
     private readonly AuthenticationHelpService _authHelpService = new();
 
     public Action<User>? OnUserFound;
     
     protected override void BuildMiddle(List<MenuItem> items)
     {
-        _signUpUiService.OnUserFound = OnUserFound;
+        _signUpService.OnUserFound = OnUserFound;
         items.Add(CreateItem("Sign Up as an Admin", ()=>
         {
-            _signUpUiService.Execute(authModule.SignUp<Admin>);
+            _signUpService.Execute(authModule.SignUp<Admin>);
         }));
         items.Add(CreateItem("Sign Up as a Regular User", () =>
         {
-            _signUpUiService.Execute(authModule.SignUp<RegularUser>);
+            _signUpService.Execute(authModule.SignUp<RegularUser>);
         }));
         
         items.Add(CreateNonSelectableItem());

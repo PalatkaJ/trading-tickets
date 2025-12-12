@@ -7,13 +7,24 @@ using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_shop.UI.Features.UIServices.Events;
 
+/// <summary>
+/// A concrete UI service that facilitates the process of creating a new Event entity.
+/// It prompts the Admin user for all necessary details (title, date, price, etc.)
+/// and executes the creation logic via the EventCreationHandler.
+/// </summary>
+/// <param name="applicationState">The application's shared state container.</param>
 public class EventCreationService(ApplicationState applicationState): UIService
 { 
     protected override string Subtitle => "event creation";
     
+    /// <summary>
+    /// Displays prompts for all event details, handles parsing, executes the creation handler,
+    /// and displays the final confirmation or failure message.
+    /// </summary>
     protected override void DisplayCore()
     {
-        MessageService confirmation = new EventCreationConfirmationService();
+        // Default to success confirmation; changed only if an exception is caught.
+        MessageService msgService = new EventCreationConfirmationService();
 
         ShowMessage("""
                     --
@@ -28,12 +39,15 @@ public class EventCreationService(ApplicationState applicationState): UIService
             var e = new Event();
             string title = GetInput("Title: ");
             string description = GetInput("Description: ");
-            DateTime date = PromptForDateTime();
+            DateTime date = PromptForDateTime(); // Custom method to ensure date format
             string place = GetInput("Place in any format (e.g. Malostranské náměstí, Profesní dům): ");
+            
             int nrOfTickets = int.Parse(GetInput("Number of tickets to release: "));
             int price = int.Parse(GetInput("Price of one ticket (whole number): "));
+            
             e.SetFields(title, description, date, place, nrOfTickets, price);
 
+            // Execute the creation transaction using the handler
             EventCreationHandler eventCreationHandler =
                 new(applicationState.EventsRepository!, 
                     (Admin)applicationState.CurrentUser!, 
@@ -43,12 +57,18 @@ public class EventCreationService(ApplicationState applicationState): UIService
         }
         catch (Exception ex)
         {
-            confirmation = new EventCreationFailedService(ex.Message);
+            // Catches any errors during input parsing or handler execution
+            msgService = new EventCreationFailedService(ex.Message);
         }
 
-        confirmation.DisplayContent();
+        msgService.DisplayContent();
     }
     
+    /// <summary>
+    /// Prompts the user specifically for the event date and time, requiring an exact format.
+    /// </summary>
+    /// <returns>A validated DateTime object.</returns>
+    /// <exception cref="FormatException">Thrown if the input does not match the required format.</exception>
     private DateTime PromptForDateTime()
     {
         const string format = "yyyy-MM-dd HH:mm";

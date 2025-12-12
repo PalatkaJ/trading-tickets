@@ -10,7 +10,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
 {
     public override string Title => SiteNames.Auth;
     
-    private readonly LogInUIService _logInUiService;
+    private readonly LogInService _logInService;
 
     private Action<User> OnUserFound;
 
@@ -24,7 +24,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
                 : LazyMenuBuildersLibrary.RegularUserMainMenuBuilder!.Value);
         };
         
-        _logInUiService = new(authModule)
+        _logInService = new(authModule)
         {
             OnUserFound = OnUserFound
         };
@@ -39,7 +39,7 @@ public class AuthenticationMenuBuilder: MenuBuilderTemplate
         }));
         items.Add(CreateItem("Log In", () =>
         {
-            _logInUiService.Execute();
+            _logInService.Execute();
         }));
         items.Add(CreateNonSelectableItem());
     }

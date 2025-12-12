@@ -2,8 +2,15 @@ using tickets_shop.UI.Features.UIServices.UIServiceSpecializers;
 
 namespace tickets_shop.UI.Features.UIServices.Authentication;
 
+/// <summary>
+/// A concrete help service that provides an overview of the application's user roles (Admin and Regular User)
+/// and explains the function of the initial authentication options (Sign Up and Log In).
+/// </summary>
 public class AuthenticationHelpService: HelpService
 {
+    /// <summary>
+    /// Gets the detailed help message explaining the user types and authentication actions.
+    /// </summary>
     protected override string Msg => 
         """
         Simple tickets shop application, you can sign/ log into as:
