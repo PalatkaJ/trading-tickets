@@ -1,0 +1,8 @@
+var namespacetickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication =
+[
+    [ "AuthenticationConfirmationService", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_confirmation_service.html", null ],
+    [ "AuthenticationHelpService", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_help_service.html", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_help_service" ],
+    [ "AuthenticationService", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_service.html", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_service" ],
+    [ "LogInService", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_log_in_service.html", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_log_in_service" ],
+    [ "SignUpService", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_sign_up_service.html", null ]
+];

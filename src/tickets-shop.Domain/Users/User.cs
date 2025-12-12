@@ -11,12 +11,12 @@ public abstract class User
     /// </summary>
     public Guid Id { get; private set; } = Guid.NewGuid();
     
-    public string Username { get; private set; }
+    public string? Username { get; private set; }
 
     /// <summary>
     /// The cryptographic hash of the user's password for secure storage.
     /// </summary>
-    public string PasswordHash { get; private set; }
+    public string? PasswordHash { get; private set; }
 
     /// <summary>
     /// Initializes the core identity fields of the User object.

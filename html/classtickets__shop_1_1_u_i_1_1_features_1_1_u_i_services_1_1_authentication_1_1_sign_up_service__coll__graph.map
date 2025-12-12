@@ -1,0 +1,9 @@
+<map id="tickets_shop.UI.Features.UIServices.Authentication.SignUpService" name="tickets_shop.UI.Features.UIServices.Authentication.SignUpService">
+<area shape="rect" id="Node000001" title="A concrete UI service that facilitates the user sign&#45;up (registration) process. It provides the speci..." alt="" coords="34,612,226,708"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_service.html" title="Provides an abstract base class for all authentication&#45;related UI workflows (e.g.,..." alt="" coords="5,427,255,564"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,576,133,613,128,611,129,581"/>
+<area shape="rect" id="Node000003" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service.html" title="Provides a base class for all application&#45;specific UI services (screens/pages). It extends the base c..." alt="" coords="49,257,211,379"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,391,133,427,128,426,130,396"/>
+<area shape="rect" id="Node000004" href="$classtickets__shop_1_1_u_i_1_1_core_1_1_input_output_1_1_console_i_o_template.html" title="Provides a base template for creating standardized console&#45;based views (pages or screens)...." alt="" coords="46,5,214,209"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="131,221,133,257,128,257,130,226"/>
+</map>

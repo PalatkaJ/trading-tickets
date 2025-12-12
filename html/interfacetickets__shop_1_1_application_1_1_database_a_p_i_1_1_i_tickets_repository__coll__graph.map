@@ -1,0 +1,3 @@
+<map id="tickets_shop.Application.DatabaseAPI.ITicketsRepository" name="tickets_shop.Application.DatabaseAPI.ITicketsRepository">
+<area shape="rect" id="Node000001" title="Defines the contract for persistence operations specifically targeting the Ticket entity." alt="" coords="5,5,208,107"/>
+</map>

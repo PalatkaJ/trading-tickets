@@ -1,0 +1,5 @@
+<map id="tickets_shop.UI.Features.UIServices.UIService" name="tickets_shop.UI.Features.UIServices.UIService">
+<area shape="rect" id="Node000001" title="Provides a base class for all application&#45;specific UI services (screens/pages). It extends the base c..." alt="" coords="9,257,170,379"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_u_i_1_1_core_1_1_input_output_1_1_console_i_o_template.html" title="Provides a base template for creating standardized console&#45;based views (pages or screens)...." alt="" coords="5,5,174,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,221,92,257,87,256,89,226"/>
+</map>

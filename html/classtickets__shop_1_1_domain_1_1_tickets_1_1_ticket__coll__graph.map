@@ -1,0 +1,3 @@
+<map id="tickets_shop.Domain.Tickets.Ticket" name="tickets_shop.Domain.Tickets.Ticket">
+<area shape="rect" id="Node000001" title="Represents a single purchasable ticket, uniquely identified and tied to a specific event and (eventua..." alt="" coords="5,5,192,229"/>
+</map>

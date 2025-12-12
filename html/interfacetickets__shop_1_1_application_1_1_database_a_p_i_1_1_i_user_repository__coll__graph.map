@@ -1,0 +1,3 @@
+<map id="tickets_shop.Application.DatabaseAPI.IUserRepository" name="tickets_shop.Application.DatabaseAPI.IUserRepository">
+<area shape="rect" id="Node000001" title="Defines the contract for a repository of users and specific loading patterns related to User entities..." alt="" coords="5,5,217,148"/>
+</map>

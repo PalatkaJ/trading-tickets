@@ -1,0 +1,11 @@
+<map id="tickets_shop.UI.Features.UIServices.Authentication.AuthenticationConfirmationService" name="tickets_shop.UI.Features.UIServices.Authentication.AuthenticationConfirmationService">
+<area shape="rect" id="Node000001" title="A concrete message service used to display a standardized confirmation message to the user after a su..." alt="" coords="5,715,255,832"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_message_service.html" title="Provides an abstract base class for all UI services that display a simple, static message to the user..." alt="" coords="24,571,236,667"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,680,133,717,128,715,129,685"/>
+<area shape="rect" id="Node000003" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_enter_to_continue_decorator.html" title="An abstract decorator class that overrides the standard footer behavior of a UIService...." alt="" coords="24,427,236,523"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="131,536,133,572,128,571,130,541"/>
+<area shape="rect" id="Node000004" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service.html" title="Provides a base class for all application&#45;specific UI services (screens/pages). It extends the base c..." alt="" coords="49,257,211,379"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="131,391,133,427,128,427,130,396"/>
+<area shape="rect" id="Node000005" href="$classtickets__shop_1_1_u_i_1_1_core_1_1_input_output_1_1_console_i_o_template.html" title="Provides a base template for creating standardized console&#45;based views (pages or screens)...." alt="" coords="46,5,214,209"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="130,221,133,257,128,257,130,226"/>
+</map>

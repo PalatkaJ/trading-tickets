@@ -1,0 +1,5 @@
+<map id="tickets_shop.Domain.Users.Admin" name="tickets_shop.Domain.Users.Admin">
+<area shape="rect" id="Node000001" title="Represents an administrative user with privileges to create events." alt="" coords="19,201,196,303"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_domain_1_1_users_1_1_user.html" title="Provides the abstract base definition for all user types (e.g., Admin, RegularUser) in the applicatio..." alt="" coords="5,5,210,153"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,165,110,202,105,201,106,170"/>
+</map>

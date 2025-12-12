@@ -1,0 +1,15 @@
+<map id="tickets_shop.UI.Features.UIServices.UIServiceSpecializers.HelpService" name="tickets_shop.UI.Features.UIServices.UIServiceSpecializers.HelpService">
+<area shape="rect" id="Node000001" title="Provides an abstract base class for all Help&#45;specific informational screens. It sets the standard sub..." alt="" coords="153,715,366,812"/>
+<area shape="rect" id="Node000006" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_help_service.html" title="A concrete help service that provides an overview of the application&#39;s user roles (Admin and Regular ..." alt="" coords="5,860,255,956"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="209,821,175,862,171,858,204,824"/>
+<area shape="rect" id="Node000007" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_items_1_1_browse_items_help_service-1-g.html" title="A generic help service that provides instructions to the user on how to interact with a screen that d..." alt="" coords="278,860,499,956"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="313,820,349,860,344,859,311,825"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_message_service.html" title="Provides an abstract base class for all UI services that display a simple, static message to the user..." alt="" coords="153,571,366,667"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,680,262,716,257,715,258,685"/>
+<area shape="rect" id="Node000003" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_enter_to_continue_decorator.html" title="An abstract decorator class that overrides the standard footer behavior of a UIService...." alt="" coords="153,427,366,523"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="260,536,262,572,257,570,259,541"/>
+<area shape="rect" id="Node000004" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service.html" title="Provides a base class for all application&#45;specific UI services (screens/pages). It extends the base c..." alt="" coords="179,257,340,379"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,391,262,428,257,427,259,396"/>
+<area shape="rect" id="Node000005" href="$classtickets__shop_1_1_u_i_1_1_core_1_1_input_output_1_1_console_i_o_template.html" title="Provides a base template for creating standardized console&#45;based views (pages or screens)...." alt="" coords="175,5,344,209"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="260,221,262,257,257,256,259,226"/>
+</map>

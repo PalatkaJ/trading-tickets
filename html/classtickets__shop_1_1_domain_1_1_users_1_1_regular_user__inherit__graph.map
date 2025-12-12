@@ -1,0 +1,5 @@
+<map id="tickets_shop.Domain.Users.RegularUser" name="tickets_shop.Domain.Users.RegularUser">
+<area shape="rect" id="Node000001" title="Represents a regular user with capabilities to hold money and tickets." alt="" coords="19,201,196,384"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_domain_1_1_users_1_1_user.html" title="Provides the abstract base definition for all user types (e.g., Admin, RegularUser) in the applicatio..." alt="" coords="5,5,210,153"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,166,110,202,105,201,107,171"/>
+</map>

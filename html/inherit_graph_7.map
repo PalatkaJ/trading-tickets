@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classtickets__shop_1_1_domain_1_1_users_1_1_user.html" title="Provides the abstract base definition for all user types (e.g., Admin, RegularUser) in the applicatio..." alt="" coords="5,46,221,72"/>
+<area shape="rect" id="Node000001" href="$classtickets__shop_1_1_domain_1_1_users_1_1_admin.html" title="Represents an administrative user with privileges to create events." alt="" coords="269,5,456,46"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="228,41,271,38,266,39,229,46"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_domain_1_1_users_1_1_regular_user.html" title="Represents a regular user with capabilities to hold money and tickets." alt="" coords="269,71,456,111"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="233,72,271,79,266,79,233,77"/>
+</map>

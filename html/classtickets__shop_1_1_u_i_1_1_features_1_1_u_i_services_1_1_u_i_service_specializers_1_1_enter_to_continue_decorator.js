@@ -1,0 +1,4 @@
+var classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_enter_to_continue_decorator =
+[
+    [ "DisplayFooter", "classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_enter_to_continue_decorator.html#a4281ff405c4145388d8ee23c572bd962", null ]
+];

@@ -1,0 +1,13 @@
+<map id="tickets_shop.UI.Features.UIServices.Items.BrowseItemsHelpService&lt; TItem &gt;" name="tickets_shop.UI.Features.UIServices.Items.BrowseItemsHelpService&lt; TItem &gt;">
+<area shape="rect" id="Node000001" title="A generic help service that provides instructions to the user on how to interact with a screen that d..." alt="" coords="5,860,226,956"/>
+<area shape="rect" id="Node000002" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_help_service.html" title="Provides an abstract base class for all Help&#45;specific informational screens. It sets the standard sub..." alt="" coords="9,715,222,812"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,825,118,861,113,859,114,829"/>
+<area shape="rect" id="Node000003" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_message_service.html" title="Provides an abstract base class for all UI services that display a simple, static message to the user..." alt="" coords="9,571,222,667"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,680,118,716,113,715,115,685"/>
+<area shape="rect" id="Node000004" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_enter_to_continue_decorator.html" title="An abstract decorator class that overrides the standard footer behavior of a UIService...." alt="" coords="9,427,222,523"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="116,536,118,571,113,571,115,541"/>
+<area shape="rect" id="Node000005" href="$classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service.html" title="Provides a base class for all application&#45;specific UI services (screens/pages). It extends the base c..." alt="" coords="35,257,196,379"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="116,391,118,427,113,427,115,396"/>
+<area shape="rect" id="Node000006" href="$classtickets__shop_1_1_u_i_1_1_core_1_1_input_output_1_1_console_i_o_template.html" title="Provides a base template for creating standardized console&#45;based views (pages or screens)...." alt="" coords="31,5,200,209"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="116,221,118,257,113,257,115,226"/>
+</map>

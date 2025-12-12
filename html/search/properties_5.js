@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['menubuilder_0',['MenuBuilder',['../classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_menu_1_1_menu_service.html#aabc13a9e5b7d22a4707b502bf3a5d90d',1,'tickets_shop::UI::Features::UIServices::Menu::MenuService']]],
+  ['moneyleft_1',['MoneyLeft',['../classtickets__shop_1_1_domain_1_1_users_1_1_regular_user.html#ad4bbdee1e35090b955474fa1ece2ecb9',1,'tickets_shop::Domain::Users::RegularUser']]],
+  ['msg_2',['Msg',['../classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_authentication_1_1_authentication_help_service.html#a834d4ca9fe9328a8f8e682f67be77577',1,'tickets_shop.UI.Features.UIServices.Authentication.AuthenticationHelpService.Msg'],['../classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_items_1_1_browse_items_help_service-1-g.html#a960674ee050e3bba7eac9de04954a8a8',1,'tickets_shop.UI.Features.UIServices.Items.BrowseItemsHelpService-1-g.Msg'],['../classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_items_1_1_item_detail_service-1-g.html#a67aa00191749949bba50cad5562ad353',1,'tickets_shop.UI.Features.UIServices.Items.ItemDetailService-1-g.Msg'],['../classtickets__shop_1_1_u_i_1_1_features_1_1_u_i_services_1_1_u_i_service_specializers_1_1_message_service.html#a391970a4a51822799667113b8be5a9f6',1,'tickets_shop.UI.Features.UIServices.UIServiceSpecializers.MessageService.Msg']]]
+];
