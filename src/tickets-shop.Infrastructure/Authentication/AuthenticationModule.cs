@@ -28,7 +28,7 @@ public class AuthenticationModule(IUserRepository userRepo,  IPasswordHasher<Use
     
     public User LogIn(string username, string password) {
         var user = userRepo.GetUserByUsernameLight(username) ?? throw new InvalidOperationException(ErrorMessages.UserNotFound);
-        var result = hasher.VerifyHashedPassword(user, user.PasswordHash, password);
+        var result = hasher.VerifyHashedPassword(user, user.PasswordHash!, password);
         switch (result)
         {
             case PasswordVerificationResult.Failed:
